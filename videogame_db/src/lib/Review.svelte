@@ -4,7 +4,7 @@
     import game1 from '$lib/images/game1_placeholder.png';
 </script>
 
-<div class="border border-gray-500 my-3 pr-5">
+<div class="border border-gray-500 my-3 p-3">
     <div class="flex items-center space-x-4 rtl:space-x-reverse">
         <Avatar src={pfp} />
         <div>
