@@ -1,8 +1,8 @@
 <!-- Login Page -->
 <script>
     import { Section, Register } from "flowbite-svelte-blocks";
-    import { Button, Checkbox, Label, Input } from "flowbite-svelte";
-	import Navbar from '../../lib/Navbar.svelte';
+    import { Button, Label, Input } from "flowbite-svelte";
+    import Navbar from '../../lib/Navbar.svelte';
 
     let username = "";
     let password = "";
