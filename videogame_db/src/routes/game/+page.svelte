@@ -3,8 +3,17 @@
 	import Navbar from "../../lib/Navbar.svelte";
     import game1 from '$lib/images/game1_placeholder.png';
 	import BarGraph from "../../lib/BarGraph.svelte";
-    import { TextPlaceholder  } from "flowbite-svelte";
-	import Review from "../../lib/Review.svelte";
+    import Review from "../../lib/Review.svelte";
+    import WriteReview from "../../lib/WriteReview.svelte";
+    import { TextPlaceholder  } from "flowbite-svelte"; 
+    import { GradientButton } from 'flowbite-svelte';
+    import { getContext } from "svelte";
+
+    // const { open } = getContext('simple-modal');
+
+    // function writeReviewPopUp(){
+    //     open(WriteReview, {message: "Popup!"});
+    // }
 </script>
 
 <Navbar />
@@ -26,6 +35,7 @@
     <div class="col-span-2 bg-sky-800 items-center justify-center pb-1 m-2">
         <h1 class= "text-2xl text-center font-semibold dark:text-white:">Avg Rating: 3.54 Stars</h1>
         <BarGraph />
+        <GradientButton color="purpleToBlue">Write a Review!</GradientButton>
     </div>
 </div>
 
