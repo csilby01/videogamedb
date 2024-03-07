@@ -43,6 +43,9 @@
         </div>
         <div class="max-w-4x1 mx-24">
             <Carousel {images} transition={scaleAnimation} let:Indicators let:Controls>
+                <a slot="slide" href="/game" target="_blank" let:Slide let:index>
+                    <Slide image={images[index]} />
+                </a>
                 <Controls />
                 <Indicators />
             </Carousel>
@@ -52,6 +55,9 @@
         </div>
         <div class="max-w-4x1 mx-24">
             <Carousel {images} transition={scaleAnimation} let:Indicators let:Controls>
+                <a slot="slide" href="/game" target="_blank" let:Slide let:index>
+                    <Slide image={images[index]} />
+                </a>
                 <Controls />
                 <Indicators />
             </Carousel>
