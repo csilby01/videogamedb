@@ -7,5 +7,7 @@ RUNNING THE WEBSITE
 - npm install -g npm@latest
 - npm run dev
 
-PACKAGES FOR CODE
-run packages.json
+PACKAGES FOR CODE:
+run in terminal: `npm install`
+
+to run code: `npm run dev`
