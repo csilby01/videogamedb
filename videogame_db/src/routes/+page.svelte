@@ -96,7 +96,6 @@
     .top_3_games_layout > :first-child {
         display: flex;
         justify-content: center;
-        /* position: sticky; */
     }
     .top_3_games_layout > div {
         border-bottom-width: 2px;

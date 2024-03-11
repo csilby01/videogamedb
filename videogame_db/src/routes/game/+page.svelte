@@ -8,12 +8,6 @@
     import { TextPlaceholder  } from "flowbite-svelte"; 
     import { GradientButton } from 'flowbite-svelte';
     import { getContext } from "svelte";
-
-    // const { open } = getContext('simple-modal');
-
-    // function writeReviewPopUp(){
-    //     open(WriteReview, {message: "Popup!"});
-    // }
 </script>
 
 <Navbar />
