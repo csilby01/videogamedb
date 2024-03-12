@@ -19,7 +19,7 @@
             </div>
         </div>
         <div class="row-span-1">
-            <TextPlaceholder size="md" class="py-4"/>
+            <TextPlaceholder size="xl" class="py-4"/>
             <TextPlaceholder size="xl mt-3" class="pt-2"/>
         </div>
     </div>
