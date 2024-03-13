@@ -1,9 +1,9 @@
 <!-- Game Page -->
 <script>
-	import Navbar from "../../lib/Navbar.svelte";
+	import Navbar from "../../../lib/Navbar.svelte";
     import game1 from '$lib/images/game1_placeholder.png';
-	import BarGraph from "../../lib/BarGraph.svelte";
-    import Review from "../../lib/Review.svelte";
+	import BarGraph from "../../../lib/BarGraph.svelte";
+    import Review from "../../../lib/Review.svelte";
     import { TextPlaceholder  } from "flowbite-svelte"; 
     import { GradientButton } from 'flowbite-svelte';
 
