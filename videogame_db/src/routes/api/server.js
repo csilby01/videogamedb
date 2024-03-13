@@ -2,7 +2,9 @@ import { getAccessToken } from '$lib/auth';
 const clientID = import.meta.env.VITE_IGDB_CLIENT_ID;
 
 export async function GET() {
+    console.log("get activated");
     const accessToken = await getAccessToken();
+    console.log(accessToken);
     const response = await fetch('https://api.igdb.com/v4/games/', {
         method: 'POST',
         headers: {

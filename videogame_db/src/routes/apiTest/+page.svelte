@@ -4,7 +4,8 @@
     let data;
 
     onMount(async () => {
-        const response = await fetch('/api/games.js');
+        console.log("Hi");
+        const response = await fetch('/api');
         data = await response.json();
     });
 </script>
