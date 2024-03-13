@@ -4,7 +4,7 @@ const clientSecret = import.meta.env.VITE_IGDB_CLIENT_SECRET
 async function getClientCredentialsToken() {
     const response = await fetch('https://id.twitch.tv/oauth2/token', {
         method: 'POST',
-        body: 'clientid=${clientID}&client_secret=${clientSecret}&grant_type=client_credentials'
+        body: `clientid=${clientID}&client_secret=${clientSecret}&grant_type=client_credentials`
     });
 
     const data = await response.json;
