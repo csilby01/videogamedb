@@ -4,9 +4,9 @@
     let data;
 
     onMount(async () => {
-        console.log("Hi");
         const response = await fetch('/api');
         data = await response.json();
+        console.log(data);
     });
 </script>
 
