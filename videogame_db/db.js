@@ -1,8 +1,15 @@
-const {Sequelize} = require('sequelize')
+import Sequelize from 'sequelize'
 
 const sequelize = new Sequelize({
     dialect: 'sqlite',
-    storage: './database/sigdb1.sqlite'
+    storage: './database/VideoGameDB.sqlite'
 })
 
-module.exports = sequelize
+sequelize.sync({ force: false })
+  .then(() => {
+    console.log('Database & tables created!');
+    // Here you can also insert initial data if needed
+  })
+  .catch(err => console.log('Error: ' + err));
+
+export default sequelize
