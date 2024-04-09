@@ -30,6 +30,10 @@ Game.init({
     type: DataTypes.STRING(100),
     allowNull: true 
   },
+  game_photo: {
+    type: DataTypes.STRING(255),
+    allowNull: true
+  },
   avg_rating: {
     type: DataTypes.VARCHAR(3),
     defaultValue: 0.00 
