@@ -1,9 +1,9 @@
 const sequelize = require('../db')
 const {Model, DataTypes} = require('sequelize')
-class User extends Model{
+class Users extends Model{
     static async findSignature(id, password){
         try{
-            const user = await User.findByPk(id)
+            const user = await Users.findByPk(id)
             if (user) {
                 if (user.password === password) {
                     return { error: "You've already signed. You can't sign it again." };
@@ -20,7 +20,7 @@ class User extends Model{
         }
     }
 }
-User.init(
+Users.init(
     {
         id:{
             type: DataTypes.INTEGER,
@@ -68,7 +68,9 @@ User.init(
     },
     {
         sequelize,
-        modelName: 'User',
+        modelName: 'Users',
+        tableName: 'Users',
+        timestamp: false
     }
 )
 
