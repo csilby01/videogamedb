@@ -53,6 +53,7 @@ User.init(
         },
         photo: {
             type: DataTypes.STRING,
+            defaultValue: null,
             allowNull: true
         },
         favGameID: {
