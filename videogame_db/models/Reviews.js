@@ -57,10 +57,9 @@ Reviews.init({
 
     }
   }, {
-    sequelize, // This is the connection instance
-    modelName: 'Reviews', // We need to choose the model name
-    tableName: 'Reviews', // Explicitly specifying the table name is optional here, but done for clarity
-    timestamps: false, // Assuming you don't want Sequelize to automatically add timestamp fields for createdAt and updatedAt
+    sequelize, 
+    modelName: 'Reviews',
+    tableName: 'Reviews', 
   });
   
-  module.exports = Reviews;
+  module.exports = Reviews
