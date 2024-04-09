@@ -3,8 +3,9 @@
     import Navbar from '../lib/Navbar.svelte';
     import Review from '../lib/Review.svelte';
     import { Carousel } from 'flowbite-svelte';
-    import { scale } from 'svelte/transition';
+    import { fade } from 'svelte/transition';
     import { quintOut } from 'svelte/easing';
+    import { onMount } from 'svelte';
     import game1 from '$lib/images/game1_placeholder.png';
     import game2 from '$lib/images/game2_placeholder.png';
     import game3 from '$lib/images/game3_placeholder.png';
@@ -21,16 +22,18 @@
             title: 'game2'
         },
         {
-            alt: 'game 2',
+            alt: 'game 3',
             src: game3,
-            title: 'game2'
+            title: 'game3'
         }
     ]
 
     const scaleAnimation = (x) => scale (x, {duration: 500, easing: quintOut });
 </script>
 
-<Navbar/>
+<div class="sticky top-0 z-50">
+    <Navbar/>
+</div>
 
 <div class="flex flex-row justify-center items-center border border-slate-200 shadow-md rounded-lg mx-28 py-9">
    <h1 class="text-5xl self-center whitespace-nowrap font-semibold text-primary-600 dark:text-primary-500">Video Game DB</h1>
@@ -83,9 +86,15 @@
 
 <div class= "mx-24 my-5">
     <h1 class="self-center whitespace-nowrap text-xl font-semibold dark:text-white">Recent Reviews: </h1>
-    <Review />
-    <Review />
-    <Review />
+    <div>
+        <Review />
+    </div>
+    <div>
+        <Review />
+    </div>
+    <div>
+        <Review />
+    </div>
 </div>
 
 <style>

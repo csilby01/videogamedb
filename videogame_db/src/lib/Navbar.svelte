@@ -5,7 +5,7 @@
     import logo from "$lib/images/logo.png";
 </script>
 
-<Navbar class="sticky top-0 z-50">
+<Navbar>
     <NavBrand href="/">
       <img src={logo} class="me-3 h-6 sm:h-9" alt="Video Game DB Logo" />
       <span class="self-center whitespace-nowrap text-xl font-semibold dark:text-white">Video Game DB</span>
