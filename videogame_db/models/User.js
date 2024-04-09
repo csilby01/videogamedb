@@ -1,24 +1,15 @@
 const sequelize = require('../db')
 const {Model, DataTypes} = require('sequelize')
 class Users extends Model{
-    static async findSignature(id, password){
-        try{
+    static async findUser(id){
+        try {
             const user = await Users.findByPk(id)
-            if (user) {
-                if (user.password === password) {
-                    return { error: "You've already signed. You can't sign it again." };
-                } else {
-                    return { error: "Incorrect password. You've already signed." };
-                }
-            } else {
-                // No signature found, user can sign.
-                return null;
-            }
-        }catch(error){
+            return user ? user : null;
+        } catch (error) {
             console.log(error)
             return null
         }
-    }
+      }
 }
 Users.init(
     {
@@ -70,8 +61,7 @@ Users.init(
         sequelize,
         modelName: 'Users',
         tableName: 'Users',
-        timestamp: false
     }
 )
 
-module.exports = User
+module.exports = Users;
