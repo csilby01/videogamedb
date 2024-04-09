@@ -18,7 +18,7 @@ Genre.init({
   sequelize, 
   modelName: 'Genre', 
   tableName: 'Genre',
-  timestamps: false,
+  timestamps: false
 });
 
-module.exports = Genre;
+module.exports = Genre

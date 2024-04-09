@@ -26,7 +26,7 @@ GameTag.init({
   sequelize,
   modelName: 'GameTag',
   tableName: 'GameTag', 
-  timestamps: false,
+  timestamps: false
 });
 
-module.exports = GameTag;
+module.exports = GameTag

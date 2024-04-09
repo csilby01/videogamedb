@@ -29,4 +29,4 @@ GameGenre.init({
   timestamps: false
 });
 
-module.exports = GameGenre;
+module.exports = GameGenre

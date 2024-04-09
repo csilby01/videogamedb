@@ -21,4 +21,4 @@ Tag.init({
   timestamps: false
 });
 
-module.exports = Tag;
+module.exports = Tag

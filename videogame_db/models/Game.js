@@ -41,4 +41,4 @@ Game.init({
   timestamps: false
 });
 
-module.exports = Game;
+module.exports = Game
