@@ -26,7 +26,7 @@ GameGenre.init({
   sequelize,
   modelName: 'GameGenre',
   tableName: 'GameGenre',
-  timestamps: false, // Assuming you don't need automatic timestamp fields
+  timestamps: false
 });
 
 module.exports = GameGenre;
