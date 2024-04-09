@@ -4,8 +4,12 @@ const { Model, DataTypes } = require('sequelize')
 class Following extends Model {
     static async findFollowing(user_id, friend_id){
         try {
-            const following = await Following.findByPk(id)
-            return following ? following : null;
+            const following = await Following.findOne({
+                where: {
+                    user_id: user_id,
+                    friend_id: friend_id
+                }
+            });
         } catch (error) {
             console.log(error)
             return null
@@ -13,7 +17,7 @@ class Following extends Model {
     }
 }
 
-Person.init({
+Following.init({
   user_id: {
     type: DataTypes.INT,
     primaryKey: true,
