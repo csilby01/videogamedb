@@ -1,4 +1,4 @@
-const sequelize = require('../db')
+const sequelize = require('../db/db')
 const {Model, DataTypes} = require('sequelize')
 class Reviews extends Model{
     static async displayReview(review_id, user_id){
