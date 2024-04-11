@@ -6,6 +6,7 @@
 		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
+		"init-db": "node src/initDB.js",
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write ."
 	},

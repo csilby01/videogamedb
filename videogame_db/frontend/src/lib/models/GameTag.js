@@ -1,5 +1,5 @@
-const { DataTypes, Model } = require('sequelize');
-const sequelize = require('../db/db'); 
+import sequelize from '../db'
+import { Model, DataTypes } from 'sequelize'
 
 class GameTag extends Model {}
 
@@ -29,4 +29,4 @@ GameTag.init({
   timestamps: false
 });
 
-module.exports = GameTag
+export default GameTag

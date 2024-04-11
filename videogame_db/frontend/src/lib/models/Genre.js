@@ -1,5 +1,5 @@
-const { DataTypes, Model } = require('sequelize');
-const sequelize = require('../db'); // Adjust this path to where you've set up your Sequelize instance
+import sequelize from '../db'
+import { Model, DataTypes } from 'sequelize'
 
 class Genre extends Model {}
 
@@ -21,4 +21,4 @@ Genre.init({
   timestamps: false
 });
 
-module.exports = Genre
+export default Genre

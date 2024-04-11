@@ -1,5 +1,5 @@
-const sequelize = require('../db')
-const { Model, DataTypes } = require('sequelize')
+
+import { Model, DataTypes, Sequelize } from 'sequelize'
 
 class Following extends Model {
     static async findFollowing(user_id, friend_id){
@@ -37,8 +37,8 @@ Following.init({
     }
   }
 }, {
-  sequelize, 
+  Sequelize, 
   modelName: 'Following'
 });
 
-module.exports = Following;
+export default Following;

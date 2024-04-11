@@ -1,5 +1,5 @@
-const { DataTypes, Model } = require('sequelize');
-const sequelize = require('../db'); // Ensure this points to your Sequelize setup file
+import sequelize from '../db'
+import { Model, DataTypes } from 'sequelize'
 
 class Tag extends Model {}
 
@@ -21,4 +21,4 @@ Tag.init({
   timestamps: false
 });
 
-module.exports = Tag
+export default Tag

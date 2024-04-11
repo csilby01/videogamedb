@@ -1,5 +1,7 @@
-const sequelize = require('../db')
-const {Model, DataTypes} = require('sequelize')
+import sequelize from '../db'
+import { Model, DataTypes } from 'sequelize' 
+
+
 class Users extends Model{
     static async findUser(id){
         try {
@@ -64,4 +66,4 @@ Users.init(
     }
 )
 
-module.exports = Users;
+export default Users;

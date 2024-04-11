@@ -1,5 +1,6 @@
-const sequelize = require('../db/db')
-const {Model, DataTypes} = require('sequelize')
+import sequelize from '../db'
+import { Model, DataTypes } from 'sequelize'
+
 class Reviews extends Model{
     static async displayReview(review_id, user_id){
         try{
@@ -62,4 +63,4 @@ Reviews.init({
     tableName: 'Reviews', 
   });
   
-  module.exports = Reviews
+export default Reviews

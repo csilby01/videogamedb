@@ -1,5 +1,5 @@
-const { DataTypes, Model } = require('sequelize');
-const sequelize = require('../db'); 
+import { DataTypes, Model } from 'sequelize'
+import sequelize from '../db/db.js'
 
 class Game extends Model {}
 
@@ -35,7 +35,7 @@ Game.init({
     allowNull: true
   },
   avg_rating: {
-    type: DataTypes.VARCHAR(3),
+    type: DataTypes.DECIMAL(3,2),
     defaultValue: 0.00 
   }
 }, {
@@ -45,4 +45,4 @@ Game.init({
   timestamps: false
 });
 
-module.exports = Game
+export default Game
