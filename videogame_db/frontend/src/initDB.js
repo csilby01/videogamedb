@@ -1,12 +1,13 @@
-// src/initializeDb.js
-import { syncDb } from "./lib/db/db.js";
-async function initialize() {
-  console.log('Initializing the database...');
-  await syncDb();
-  console.log('Database initialization complete.');
-}
+import { sequelize } from './lib/db/db.js';
+import './lib/db/initModels.js'; // This ensures models are loaded and associated
 
-initialize().catch((error) => {
-  console.error('Failed to initialize the database:', error);
-  process.exit(1); // Exit with a failure code
-});
+async function startApp() {
+  try {
+    await sequelize.sync(); // Add { force: true } during development if necessary
+    console.log('Database synced');
+    // Start your server or application
+  } catch (error) {
+    console.error('Unable to sync database:', error);
+  }
+}
+startApp();

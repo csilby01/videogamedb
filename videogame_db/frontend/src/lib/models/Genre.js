@@ -1,4 +1,4 @@
-import sequelize from '../db'
+import {sequelize} from '../db/db.js'
 import { Model, DataTypes } from 'sequelize'
 
 class Genre extends Model {}

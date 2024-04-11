@@ -1,5 +1,5 @@
-
-import { Model, DataTypes, Sequelize } from 'sequelize'
+import {sequelize} from '../db/db.js'
+import { Model, DataTypes } from 'sequelize'
 
 class Following extends Model {
     static async findFollowing(user_id, friend_id){
@@ -19,7 +19,7 @@ class Following extends Model {
 
 Following.init({
   user_id: {
-    type: DataTypes.INT,
+    type: DataTypes.INTEGER,
     primaryKey: true,
     allowNull: false,
     references: {
@@ -28,7 +28,7 @@ Following.init({
     }
   },
   friend_id: {
-    type: DataTypes.INT,
+    type: DataTypes.INTEGER,
     primaryKey: true,
     allowNull: false,
     references: {
@@ -37,7 +37,7 @@ Following.init({
     }
   }
 }, {
-  Sequelize, 
+  sequelize, 
   modelName: 'Following'
 });
 

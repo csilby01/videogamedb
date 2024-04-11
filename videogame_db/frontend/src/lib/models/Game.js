@@ -1,5 +1,5 @@
 import { DataTypes, Model } from 'sequelize'
-import sequelize from '../db/db.js'
+import {sequelize} from '../db/db.js'
 
 class Game extends Model {}
 

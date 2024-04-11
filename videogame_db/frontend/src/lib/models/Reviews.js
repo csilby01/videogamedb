@@ -1,4 +1,4 @@
-import sequelize from '../db'
+import {sequelize} from '../db/db.js'
 import { Model, DataTypes } from 'sequelize'
 
 class Reviews extends Model{
@@ -53,7 +53,7 @@ Reviews.init({
       allowNull: false
     },
     rating: {
-      type: DataTypes.VARCHAR(2),
+      type: DataTypes.DECIMAL(3,2),
       allowNull: false
 
     }
