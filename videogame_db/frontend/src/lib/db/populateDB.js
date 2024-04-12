@@ -37,10 +37,25 @@ async function getGames(){
     }
 }
 
-getGames().then(data => {
-    console.log(data[0]);
-})
-
-function placeGamesIntoDB() {
-    
+async function placeGamesIntoDB() {
+    const data = await getGames();
+    data.forEach(async (gameData) => {
+        try {
+            await Game.create({
+                title: gameData.name,
+                description: gameData.storyline || gameData.summary,
+                release_date: new Date(gameData.first_release_date * 1000),
+                game_photo: gameData.cover,
+                avg_rating: gameData.aggregated_rating || 0.00
+            }).then(createdGame => {
+                console.log('Inserted Game:', createdGame.title);
+            }).catch(error =>{
+                console.error('Failed to insert game into database: ', error);
+            });
+        } catch(error) {
+            console.error('Failed to insert game into database:', error);
+        }
+    });
 }
+
+placeGamesIntoDB();
