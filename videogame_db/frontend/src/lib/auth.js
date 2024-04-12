@@ -1,5 +1,5 @@
-const clientID = import.meta.env.VITE_IGDB_CLIENT_ID
-const clientSecret = import.meta.env.VITE_IGDB_CLIENT_SECRET
+const clientID = "i8yidst2mhp5rcokctxnlkasfidnxg";
+const clientSecret = "uqk7z7nsr51co5ybtchsr0gaiajhgn";
 
 async function getClientCredentialsToken() {
     const params = new URLSearchParams();

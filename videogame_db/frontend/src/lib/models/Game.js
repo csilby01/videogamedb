@@ -22,14 +22,14 @@ Game.init({
     type: DataTypes.DATE,
     allowNull: true 
   },
-  publisher: {
-    type: DataTypes.STRING(100),
-    allowNull: true 
-  },
-  developer: {
-    type: DataTypes.STRING(100),
-    allowNull: true 
-  },
+  // publisher: {
+  //   type: DataTypes.STRING(100),
+  //   allowNull: true 
+  // },
+  // developer: {
+  //   type: DataTypes.STRING(100),
+  //   allowNull: true 
+  // },
   game_photo: {
     type: DataTypes.STRING(255),
     allowNull: true
