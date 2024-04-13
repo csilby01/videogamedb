@@ -15,26 +15,40 @@ const clientID = "i8yidst2mhp5rcokctxnlkasfidnxg";
 
 // Get games from IGDB
 async function getGames(){
+    let allGames = [];
+    let offset = 0;
+    const limit = 500;
+
     try {
         const accessToken = await getAccessToken();
-        const response = await fetch('https://api.igdb.com/v4/games/', {
+        while (true){
+            const response = await fetch('https://api.igdb.com/v4/games/', {
             method: 'POST',
             headers: {
                 'Client-ID': clientID,
                 'Authorization': `Bearer ${accessToken}`
             },
-            body: 'fields id, name, storyline, summary, first_release_date, cover, aggregated_rating; search "Outer Wilds";'
-        });
-        if (!response.ok) {
-            throw new Error(`API request failed with status: ${response.status}`);
-        }
+            body: `fields id, name, storyline, summary, first_release_date, cover, aggregated_rating; where first_release_date != null & cover != null & (summary != null | storyline != null) & version_parent = null & parent_game = null; limit ${limit}; sort id asc; offset ${offset};`
+            });
+            if (!response.ok) {
+                throw new Error(`API request failed with status: ${response.status}`);
+            }
 
-        const data = await response.json();
-        //return JSON.stringify(data);  
-        return data;
+            const data = await response.json();
+
+            if (data.length === 0){
+                break;
+            }
+
+            allGames = allGames.concat(data);
+            console.log(`Got games ${offset} - ${offset + limit} allGames now contains ${allGames.length} entries`);
+            offset += limit;
+        }
     } catch (error) {
         console.error('Error in GET function:', error);
     }
+
+    return allGames;
 }
 
 async function placeGamesIntoDB() {
@@ -47,11 +61,7 @@ async function placeGamesIntoDB() {
                 release_date: new Date(gameData.first_release_date * 1000),
                 game_photo: gameData.cover,
                 avg_rating: gameData.aggregated_rating || 0.00
-            }).then(createdGame => {
-                console.log('Inserted Game:', createdGame.title);
-            }).catch(error =>{
-                console.error('Failed to insert game into database: ', error);
-            });
+            })
         } catch(error) {
             console.error('Failed to insert game into database:', error);
         }

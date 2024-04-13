@@ -8,6 +8,7 @@
 		"preview": "vite preview",
 		"init-db": "node src/initDB.js",
 		"populate-db": "node src/lib/db/populateDB.js",
+		"delete-games": "node src/lib/db/resetGames.js",
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write ."
 	},
