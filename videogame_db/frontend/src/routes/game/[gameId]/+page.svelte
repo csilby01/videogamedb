@@ -13,15 +13,7 @@
     const gameId = $page.params.gameId;
 
     export let data;
-
-    // onMount(async () => {
-    //     const response = await fetch(`/game/${gameId}`);
-    //     if (response.ok){
-    //         game = await response.json();
-    //     } else {
-    //         console.error('Failed to fetch game details');
-    //     }
-    // })
+    const game = JSON.parse(data.post);
     
 </script>
 
@@ -36,7 +28,7 @@
         <h1>Tags</h1>
     </div>
     <div class="col-span-3 m-2">
-        <h1 class="text-5xl text-center whitespace-nowrap font-semibold dark:text-white">{gameId}</h1>
+        <h1 class="text-5xl text-center whitespace-nowrap font-semibold dark:text-white">{game.title}</h1>
         <h1>Summary</h1>
         <TextPlaceholder size="md" class="py-4"/>
         <TextPlaceholder size="xl mt-3" class="py-4"/>
