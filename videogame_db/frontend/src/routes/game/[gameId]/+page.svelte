@@ -1,6 +1,7 @@
 <!-- Game Page -->
 <script>
-	import Navbar from "../../../lib/Navbar.svelte";
+	/** @type {import('./$types').PageData} */
+    import Navbar from "../../../lib/Navbar.svelte";
     import game1 from '$lib/images/game1_placeholder.png';
 	import BarGraph from "../../../lib/BarGraph.svelte";
     import Review from "../../../lib/Review.svelte";
@@ -10,6 +11,8 @@
 	import { onMount } from "svelte";
 
     const gameId = $page.params.gameId;
+
+    export let data;
 
     // onMount(async () => {
     //     const response = await fetch(`/game/${gameId}`);

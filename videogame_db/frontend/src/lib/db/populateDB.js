@@ -6,7 +6,6 @@
 
 //NOTE: game_photo is a reference ID to call /cover endpoint in IGDB
 
-import { Sequelize } from 'sequelize';
 import Game from '../models/Game.js';
 import { getAccessToken } from '../auth.js';
 
