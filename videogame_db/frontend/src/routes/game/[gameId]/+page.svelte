@@ -6,8 +6,20 @@
     import Review from "../../../lib/Review.svelte";
     import { TextPlaceholder  } from "flowbite-svelte"; 
     import { GradientButton } from 'flowbite-svelte';
+    import { page } from '$app/stores';
+	import { onMount } from "svelte";
 
+    const gameId = $page.params.gameId;
 
+    // onMount(async () => {
+    //     const response = await fetch(`/game/${gameId}`);
+    //     if (response.ok){
+    //         game = await response.json();
+    //     } else {
+    //         console.error('Failed to fetch game details');
+    //     }
+    // })
+    
 </script>
 
 <Navbar />
@@ -21,7 +33,7 @@
         <h1>Tags</h1>
     </div>
     <div class="col-span-3 m-2">
-        <h1 class="text-5xl text-center whitespace-nowrap font-semibold dark:text-white">Game 1</h1>
+        <h1 class="text-5xl text-center whitespace-nowrap font-semibold dark:text-white">{gameId}</h1>
         <h1>Summary</h1>
         <TextPlaceholder size="md" class="py-4"/>
         <TextPlaceholder size="xl mt-3" class="py-4"/>
