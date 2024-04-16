@@ -7,7 +7,7 @@
 //NOTE: game_photo is a reference ID to call /cover endpoint in IGDB
 
 import Game from '../models/Game.js';
-import { getAccessToken } from '../auth.js';
+import { getAccessToken } from './utils/auth.js';
 
 const clientID = "i8yidst2mhp5rcokctxnlkasfidnxg";
 

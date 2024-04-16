@@ -13,16 +13,17 @@
     const gameId = $page.params.gameId;
 
     export let data;
-    const game = JSON.parse(data.post);
-    
+    const game = JSON.parse(data.post.game);
+    const coverURL = data.post.cover;
+  
 </script>
 
 <Navbar />
 
 <div class="grid grid-cols-7">
     <div class="col-span-2 m-2 p-2 border border-slate-200 shadow-md rounded-lg self-start">
-        <img src={game1} alt="game 1" class='pb-2'/>
-        <h1>Date • Publisher</h1>
+        <img src={coverURL} alt="game 1" class='pb-2'/>
+        <h1>{game.release_date.substring(0,10)}</h1>
         <h1>Genre</h1>
         <h1>Console(s)</h1>
         <h1>Tags</h1>
@@ -30,11 +31,11 @@
     <div class="col-span-3 m-2">
         <h1 class="text-5xl text-center whitespace-nowrap font-semibold dark:text-white">{game.title}</h1>
         <h1>Summary</h1>
-        <TextPlaceholder size="md" class="py-4"/>
-        <TextPlaceholder size="xl mt-3" class="py-4"/>
+        <p>{game.description}</p>
     </div>
     <div class="col-span-2 grid grid-rows-1 items-center justify-center pb-1 m-2 border border-slate-200 shadow-md rounded-lg self-start">
         <div class="row-span-1"> 
+            <h1 class= " text-2xl text-center font-semibold dark:text-white:">Critic Rating: {game.avg_rating}%</h1>
             <h1 class= " text-2xl text-center font-semibold dark:text-white:">Avg Rating: 3.54 Stars</h1>
             <BarGraph />
         </div>
