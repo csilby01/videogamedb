@@ -57,7 +57,13 @@ Users.init(
                 model: 'Game',
                 key: 'id'
             }
-        }
+        },
+        role: {
+            type: DataTypes.ENUM,
+            values: ['admin', 'user'],
+            defaultValue: 'user',
+            allowNull: false
+          }
     },
     {
         sequelize,

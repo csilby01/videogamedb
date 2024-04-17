@@ -6,6 +6,17 @@
     import game3 from '$lib/images/game3_placeholder.png';
 	import BarGraph from "../../lib/BarGraph.svelte";
 	import Review from '../../lib/Review.svelte';
+    import { isAuthenticated } from '$stores/authStore';
+    import { onMount } from 'svelte';
+    import { navigate } from 'svelte-routing';
+
+    onMount(() => {
+        isAuthenticated.subscribe(value => {
+            if (!value) {
+                navigate('/login', { replace: true });
+            }
+        });
+    });
 
     const images = [
         {
