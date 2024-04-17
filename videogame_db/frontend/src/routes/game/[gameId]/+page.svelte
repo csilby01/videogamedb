@@ -15,6 +15,7 @@
     export let data;
     const game = JSON.parse(data.post.game);
     const coverURL = data.post.cover;
+    const genresAndThemes = data.post.genresAndThemes;
   
 </script>
 
