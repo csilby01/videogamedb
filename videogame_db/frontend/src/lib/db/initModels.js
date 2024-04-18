@@ -3,20 +3,12 @@ import Game from '../models/Game.js';
 import User from '../models/User.js';
 import Reviews from '../models/Reviews.js';
 import Following from '../models/Following.js';
-import Genre from '../models/Genre.js';
-import GameGenre from '../models/GameGenre.js';
-import Tag from '../models/Tag.js';
-import GameTag from '../models/GameTag.js';
 
 // Initialize models
 const Game1 = new Game(sequelize);
 const User1 = new User(sequelize);
 const Review1= new Reviews(sequelize);
 const Following1 = new Following(sequelize);
-const Genre1 = new Genre(sequelize);
-const GameGenre1 = new GameGenre(sequelize);
-const Tag1 = new Tag(sequelize);
-const GameTag1 = new GameTag(sequelize);
 
 // Set up model associations
 // Game1.hasMany(Review1, { foreignKey: 'game_id' });
@@ -48,4 +40,4 @@ async function syncDb() {
 }
 
 // Export the sequelize instance, the sync function, and the models
-export {syncDb, Game1, Following1, GameGenre1, GameTag1, Genre1, Review1, Tag1, User1};
+export {syncDb, Game1, Following1, Review1, User1};

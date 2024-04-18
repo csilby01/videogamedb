@@ -49,14 +49,10 @@ Users.init(
             defaultValue: null,
             allowNull: true
         },
-        favGameID: {
-            type: DataTypes.INTEGER,
+        favGames: {
+            type: DataTypes.STRING,
             allowNull: true,
             defaultValue: null,
-            references: {
-                model: 'Game',
-                key: 'id'
-            }
         },
         role: {
             type: DataTypes.ENUM,
