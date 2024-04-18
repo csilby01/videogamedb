@@ -2,13 +2,11 @@
 <script>
 	/** @type {import('./$types').PageData} */
     import Navbar from "../../../lib/Navbar.svelte";
-    import game1 from '$lib/images/game1_placeholder.png';
 	import BarGraph from "../../../lib/BarGraph.svelte";
     import Review from "../../../lib/Review.svelte";
-    import { TextPlaceholder  } from "flowbite-svelte"; 
-    import { GradientButton } from 'flowbite-svelte';
+    import { GradientButton, Carousel } from 'flowbite-svelte';
     import { page } from '$app/stores';
-	import { onMount } from "svelte";
+    
 
     const gameId = $page.params.gameId;
 
@@ -18,10 +16,12 @@
     const genresAndThemes = JSON.parse(data.post.genresAndThemes);
     const genres = genresAndThemes["genres"];
     const themes = genresAndThemes["themes"];
+    const screenshotURLs = data.post.screenshotURLs;
 
     let gameGenres = JSON.parse(game.genres);
     let gameThemes = JSON.parse(game.themes);
     let gameGenresAndThemes = [];
+    let images = [];
 
     // get games genre names
     for (let i = 0; i < genres.length; i++){
@@ -41,6 +41,14 @@
         }
     }
     
+    // sort screenshots so carousel can display them
+    for (let i = 0; i < screenshotURLs.length; i++){
+        images.push({
+            alt: `screenshot ${i}`,
+            src: screenshotURLs[i],
+            title: `screenshot ${i}`
+        })
+    }
 </script>
 
 <Navbar />
@@ -53,8 +61,14 @@
     </div>
     <div class="col-span-3 m-2">
         <h1 class="text-5xl text-center whitespace-nowrap font-semibold dark:text-white">{game.title}</h1>
-        <h1>Summary</h1>
         <p>{game.description}</p>
+        <Carousel {images} let:Indicators let:Controls>
+            <a slot="slide" href="/game" target="_blank" let:Slide let:index>
+                <Slide image={images[index]} />
+            </a>
+            <Controls />
+            <Indicators />
+        </Carousel>
     </div>
     <div class="col-span-2 grid grid-rows-1 items-center justify-center pb-1 m-2 border border-slate-200 shadow-md rounded-lg self-start">
         <div class="row-span-1"> 
