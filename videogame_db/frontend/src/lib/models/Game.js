@@ -23,19 +23,19 @@ Game.init({
     allowNull: true 
   },
   genres: {
-    type: DataTypes.ARRAY,
+    type: DataTypes.STRING(100),
     allowNull: true
   },
   themes: {
-    type: DataTypes.ARRAY,
+    type: DataTypes.STRING(100),
     allowNull: true
   },
   screenshots: {
-    type: DataTypes.ARRAY,
+    type: DataTypes.STRING(500),
     allowNull: true
   },
   videos: {
-    type: DataTypes.ARRAY,
+    type: DataTypes.STRING(500),
     allowNull: true
   },
   game_photo: {

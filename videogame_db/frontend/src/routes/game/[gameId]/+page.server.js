@@ -37,7 +37,7 @@ export async function load({ params }) {
         post: {
             game: JSON.stringify(game),
             cover: coverURL,
-            genresAndThemes: genresthemes
+            genresAndThemes: JSON.stringify(genresthemes)
         }
     };
 }

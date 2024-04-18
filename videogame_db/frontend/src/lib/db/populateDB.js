@@ -59,10 +59,10 @@ async function placeGamesIntoDB() {
                 release_date: new Date(gameData.first_release_date * 1000),
                 game_photo: gameData.cover,
                 avg_rating: gameData.aggregated_rating || 0.00,
-                genres: gameData.genres,
-                themes: gameData.themes,
-                screenshots: gameData.screenshots,
-                videos: gameData.videos
+                genres: JSON.stringify(gameData.genres),
+                themes: JSON.stringify(gameData.themes),
+                screenshots: JSON.stringify(gameData.screenshots),
+                videos: JSON.stringify(gameData.videos)
             })
         } catch(error) {
             console.error('Failed to insert game into database:', error);

@@ -15,8 +15,32 @@
     export let data;
     const game = JSON.parse(data.post.game);
     const coverURL = data.post.cover;
-    const genresAndThemes = data.post.genresAndThemes;
-  
+    const genresAndThemes = JSON.parse(data.post.genresAndThemes);
+    const genres = genresAndThemes["genres"];
+    const themes = genresAndThemes["themes"];
+
+    let gameGenres = JSON.parse(game.genres);
+    let gameThemes = JSON.parse(game.themes);
+    let gameGenresAndThemes = [];
+
+    // get games genre names
+    for (let i = 0; i < genres.length; i++){
+        for (let j = 0; j < gameGenres.length; j++){
+            if (gameGenres[j] == genres[i].id){
+                gameGenresAndThemes.push(genres[i].name);
+            }
+        }
+    }
+
+    // get games theme names
+    for (let i = 0; i < themes.length; i++){
+        for (let j = 0; j < gameThemes.length; j++){
+            if (gameThemes[j] == themes[i].id){
+                gameGenresAndThemes.push(themes[i].name);
+            }
+        }
+    }
+    
 </script>
 
 <Navbar />
@@ -25,9 +49,7 @@
     <div class="col-span-2 m-2 p-2 border border-slate-200 shadow-md rounded-lg self-start">
         <img src={coverURL} alt="game 1" class='pb-2'/>
         <h1>{game.release_date.substring(0,10)}</h1>
-        <h1>Genre</h1>
-        <h1>Console(s)</h1>
-        <h1>Tags</h1>
+        <h1>{gameGenresAndThemes}</h1>
     </div>
     <div class="col-span-3 m-2">
         <h1 class="text-5xl text-center whitespace-nowrap font-semibold dark:text-white">{game.title}</h1>
