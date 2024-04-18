@@ -1,7 +1,7 @@
 <!-- Sign Up Page -->
 <script>
     import { Section, Register } from "flowbite-svelte-blocks";
-    import { Button, Label, Input } from "flowbite-svelte";
+    import { Button, Label, Input} from "flowbite-svelte";
 	import Navbar from "../../lib/Navbar.svelte";
 
     let username = "";
