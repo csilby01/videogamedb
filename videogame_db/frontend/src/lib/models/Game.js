@@ -1,4 +1,4 @@
-import { DataTypes, Model } from 'sequelize'
+import { DATE, DataTypes, Model } from 'sequelize'
 import {sequelize} from '../db/db.js'
 
 class Game extends Model {}
@@ -22,14 +22,22 @@ Game.init({
     type: DataTypes.DATE,
     allowNull: true 
   },
-  // publisher: {
-  //   type: DataTypes.STRING(100),
-  //   allowNull: true 
-  // },
-  // developer: {
-  //   type: DataTypes.STRING(100),
-  //   allowNull: true 
-  // },
+  genres: {
+    type: DataTypes.ARRAY,
+    allowNull: true
+  },
+  themes: {
+    type: DataTypes.ARRAY,
+    allowNull: true
+  },
+  screenshots: {
+    type: DataTypes.ARRAY,
+    allowNull: true
+  },
+  videos: {
+    type: DataTypes.ARRAY,
+    allowNull: true
+  },
   game_photo: {
     type: DataTypes.STRING(255),
     allowNull: true

@@ -26,7 +26,7 @@ async function getGames(){
                 'Client-ID': clientID,
                 'Authorization': `Bearer ${accessToken}`
             },
-            body: `fields id, name, storyline, summary, first_release_date, cover, aggregated_rating; where first_release_date != null & cover != null & (summary != null | storyline != null) & version_parent = null & parent_game = null; limit ${limit}; sort id asc; offset ${offset};`
+            body: `fields id, name, storyline, summary, first_release_date, cover, aggregated_rating, genres, themes, screenshots, videos; where first_release_date != null & cover != null & (summary != null | storyline != null) & version_parent = null & parent_game = null; limit ${limit}; sort id asc; offset ${offset};`
             });
             if (!response.ok) {
                 throw new Error(`API request failed with status: ${response.status}`);
@@ -58,7 +58,11 @@ async function placeGamesIntoDB() {
                 description: gameData.storyline || gameData.summary,
                 release_date: new Date(gameData.first_release_date * 1000),
                 game_photo: gameData.cover,
-                avg_rating: gameData.aggregated_rating || 0.00
+                avg_rating: gameData.aggregated_rating || 0.00,
+                genres: gameData.genres,
+                themes: gameData.themes,
+                screenshots: gameData.screenshots,
+                videos: gameData.videos
             })
         } catch(error) {
             console.error('Failed to insert game into database:', error);
