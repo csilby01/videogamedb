@@ -20,7 +20,6 @@
   // Format the date
     let formattedDate = currentDate.toLocaleDateString(undefined, options);
     const game = JSON.parse(data.post.game);
-    console.log(data)
     // const game = JSON.parse(data.post.game);
     const coverURL = data.post.cover;
 
@@ -29,8 +28,8 @@
     let platform = 'Xbox'
 
     function handleSubmit(){
-        let loginFields={username, password};
-        console.log(loginFields);
+        let reviewFields={gameId, currentDate, spoilers, review_text, platform, rating};
+        console.log(reviewFields);
     }
 
 </script>
