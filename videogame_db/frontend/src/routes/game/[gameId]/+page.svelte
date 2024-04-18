@@ -75,7 +75,7 @@
             <BarGraph />
         </div>
         <div class="flex items-center justify-center p-3">
-            <GradientButton color="pinkToOrange">Write a Review!</GradientButton>
+            <GradientButton color="pinkToOrange" href="/game/{gameId}/writeReview">Write a Review!</GradientButton>
         </div>
     </div>
 </div>

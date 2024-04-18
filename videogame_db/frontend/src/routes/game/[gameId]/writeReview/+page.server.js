@@ -1,16 +1,16 @@
 import { sequelize } from '/src/lib/db/db.js';
 import { getGameCover } from '../../../../lib/db/utils/getCover';
-import Game from '$lib/models/Game.js'
+import Game from '$lib/models/Game.js';
+import User from '$lib/models/User.js';
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ params }) {
     let game;
     let coverURL;
-    let title;
     const { gameId } = params;
-    console.log("Fetching game with ID:", gameId);
 
     // get Game from DB
+    console.log("Fetching game with ID:", gameId);
     try {
         game = await Game.findByPk(gameId);
         console.log('Found Game:', game.title);

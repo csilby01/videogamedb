@@ -20,18 +20,32 @@
     // Format the dates
     let formattedDate = currentDate.toLocaleDateString(undefined, options);
     const game = JSON.parse(data.post.game);
-    // const game = JSON.parse(data.post.game);
     const coverURL = data.post.cover;
 
-    let spoilers = false;
-    let review_text
-    let platform = 'Xbox'
+    let review_text;
+    let platform = 'Xbox';
 
-    function handleSubmit(){
-        let reviewFields={gameId, currentDate, spoilers, review_text, platform, rating};
-        console.log(reviewFields);
+    async function handleSubmit(){
+        let reviewFields={gameId, currentDate, review_text, platform, rating};
+        
+        try {
+            const response = await fetch(`/game/${gameId}/writeReview`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json'},
+                body: JSON.stringify(reviewFields)
+            });
+
+            const result = await response.json();
+            if (result.success){
+                console.log('Review posted:', result.data);
+            }
+            else {
+                console.error(`Failed to post review: ${result.message}`);
+            }
+        } catch (error) {
+            console.error('Error posting review:', error);
+        }
     }
-
 </script>
 
 <div class="sticky top-0 z-50">
@@ -75,10 +89,6 @@
     <div class="grid grid-cols-4">
         <div class="col-span-1 m-2 p-2 self-start">
             <div>
-                <Checkbox id="spoilers" class="my-3">
-                    <!-- <input type="checkbox" id="spoilers" bind:checked={spoilers} /> -->
-                    Spoilers?
-                </Checkbox>
                 <Button>{platform}<ChevronDownOutline class="w-4 h-4 ms-2 text-white dark:text-white" /></Button>
                 <Dropdown>
                     <li>
