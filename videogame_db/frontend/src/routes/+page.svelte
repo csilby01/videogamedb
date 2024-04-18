@@ -6,31 +6,37 @@
     import { fade } from 'svelte/transition';
     import { quintOut } from 'svelte/easing';
     import { onMount } from 'svelte';
-    import game1 from '$lib/images/game1_placeholder.png';
-    import game2 from '$lib/images/game2_placeholder.png';
-    import game3 from '$lib/images/game3_placeholder.png';
 
     export let data;
     
-    console.log(JSON.parse(data.post.threeGames[0]));
+    let game1 = JSON.parse(data.post.threeGames[0]);
+    let game2 = JSON.parse(data.post.threeGames[1]);
+    let game3 = JSON.parse(data.post.threeGames[2]);
 
+    let coverURLs = data.post.covers;
+
+    let popCover;
+    let newCover;
     const images = [
         {
             alt: 'game 1',
-            src: game1,
-            title: 'game1'
+            src: coverURLs[0],
+            title: game1.title,
+            gameID: game1.game_id
         },
         {
             alt: 'game 2',
-            src: game2,
-            title: 'game2'
+            src: coverURLs[1],
+            title: game2.title,
+            gameID: game2.game_id
         },
         {
             alt: 'game 3',
-            src: game3,
-            title: 'game3'
+            src: coverURLs[2],
+            title: game3.title,
+            gameID: game3.game_id
         }
-    ]
+    ];
 </script>
 
 <div class="sticky top-0 z-50">
@@ -43,45 +49,41 @@
 
 <div class="grid grid-cols-5 gap-2 my-10">
     <div class='col-span-4 grid-rows-2'>
-        <div class="row-span-1">
-            <div class="flex flex-row justify-center items-center mx-10">
-                <h1 class="self-center whitespace-nowrap text-xl font-semibold dark:text-white">Popular Games</h1>
-            </div>
-            <div class="max-w-4x1 mx-24 shadow-lg rounded-xl">
-                <Carousel {images} let:Indicators let:Controls>
-                    <a slot="slide" href="/game" target="_blank" let:Slide let:index>
-                        <Slide image={images[index]} />
-                    </a>
+        <div class="row-span-1 flex flex-row justify-center items-center">
+            <div class="max-w-4xl min-w-48 w-fit mx-24 shadow-lg rounded-xl">
+                <h1 class="whitespace-nowrap text-xl font-semibold dark:text-white">Popular Games</h1>
+                <Carousel {images} imgClass="object-contain h-full w-fit rounded-sm" let:Indicators let:Controls on:change={({ detail }) => (popCover = detail)}>
                     <Controls />
                     <Indicators />
                 </Carousel>
+                <div class="rounded h-10 bg-gray-300 dark:bg-gray-700 dark:text-white p-2 my-2 text-center">
+                    <a href="/game/{popCover?.gameID}" class="hover:underline">{popCover?.title}</a>
+                </div>
             </div>
         </div>
-        <div class="row-span-1">
-            <div class="flex flex-row justify-center items-center mx-10 mt-5">
-                <h1 class="self-center whitespace-nowrap text-xl font-semibold dark:text-white">New Releases</h1>
-            </div>
-            <div class="max-w-4x1 mx-24 shadow-lg rounded-xl">
-                <Carousel {images} let:Indicators let:Controls>
-                    <a slot="slide" href="/game" target="_blank" let:Slide let:index>
-                        <Slide image={images[index]} />
-                    </a>
+        <div class="row-span-1 flex flex-row justify-center items-center">
+            <div class="max-w-4xl min-w-48 w-fit mx-24 shadow-lg rounded-xl">
+                <h1 class="whitespace-nowrap text-xl font-semibold dark:text-white">New Releases</h1>
+                <Carousel {images} imgClass="object-contain h-full w-fit rounded-sm" let:Indicators let:Controls on:change={({ detail }) => (newCover = detail)}>
                     <Controls />
                     <Indicators />
                 </Carousel>
-            </div> 
+                <div class="rounded h-10 bg-gray-300 dark:bg-gray-700 dark:text-white p-2 my-2 text-center">
+                    <a href="/game/{newCover?.gameID}" class="hover:underline">{newCover?.title}</a>
+                </div>
+            </div>
         </div>       
     </div>
     <div class="top_3_games_layout col-span-1 border border-slate-200 shadow-md rounded-lg mr-3 pb-3">
         <h1 class="text-2xl text-center font-semibold">Top 3 Games of the Month</h1>
         <div>
-            1. Game 1<img src={game1} alt="game 1" class='pb-2'/>
+            <a href="/game/{images[0].gameID}" class="hover:underline">1. {images[0].title}<img src={images[0].src} alt={images[0].alt} class='pb-2'/></a>
         </div>
         <div>
-            2. Game 2<img src={game2} alt="game 1" class='pb-2'/>
+            <a href="/game/{images[1].gameID}" class="hover:underline">2. {images[1].title}<img src={images[1].src} alt={images[0].alt} class='pb-2'/></a>
         </div>
         <div>
-            3. Game 3<img src={game3} alt="game 1" class='pb-2'/>
+            <a href="/game/{images[2].gameID}" class="hover:underline">3. {images[2].title}<img src={images[2].src} alt={images[0].alt} class='pb-2'/></a>
         </div>
     </div>
 </div>
@@ -115,5 +117,17 @@
         margin-left: 1.25rem;
         margin-right: 1.25rem;
         padding-top: 0.75rem;
+    }
+    .aspect-ratio-box {
+        position: relative;
+        width: 100%;
+        padding-top: 10%;
+    }
+    .aspec-ratio-box-inner{
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
     }
 </style>
