@@ -10,6 +10,10 @@
     import game2 from '$lib/images/game2_placeholder.png';
     import game3 from '$lib/images/game3_placeholder.png';
 
+    export let data;
+    
+    console.log(JSON.parse(data.post.threeGames[0]));
+
     const images = [
         {
             alt: 'game 1',
@@ -27,8 +31,6 @@
             title: 'game3'
         }
     ]
-
-    const scaleAnimation = (x) => scale (x, {duration: 500, easing: quintOut });
 </script>
 
 <div class="sticky top-0 z-50">
@@ -46,7 +48,7 @@
                 <h1 class="self-center whitespace-nowrap text-xl font-semibold dark:text-white">Popular Games</h1>
             </div>
             <div class="max-w-4x1 mx-24 shadow-lg rounded-xl">
-                <Carousel {images} transition={scaleAnimation} let:Indicators let:Controls>
+                <Carousel {images} let:Indicators let:Controls>
                     <a slot="slide" href="/game" target="_blank" let:Slide let:index>
                         <Slide image={images[index]} />
                     </a>
@@ -60,7 +62,7 @@
                 <h1 class="self-center whitespace-nowrap text-xl font-semibold dark:text-white">New Releases</h1>
             </div>
             <div class="max-w-4x1 mx-24 shadow-lg rounded-xl">
-                <Carousel {images} transition={scaleAnimation} let:Indicators let:Controls>
+                <Carousel {images} let:Indicators let:Controls>
                     <a slot="slide" href="/game" target="_blank" let:Slide let:index>
                         <Slide image={images[index]} />
                     </a>

@@ -17,7 +17,7 @@
     };
     let rating = 3;
 
-  // Format the date
+    // Format the dates
     let formattedDate = currentDate.toLocaleDateString(undefined, options);
     const game = JSON.parse(data.post.game);
     // const game = JSON.parse(data.post.game);
