@@ -10,10 +10,6 @@
     let password = "";
     let password2 = "";
     let email = "";
-    if(password !== password2){
-      console.log("Passwords do not match");
-      return;
-    }
 
     async function handleSubmit(event){
         const formData = new FormData(event.target);
@@ -28,7 +24,7 @@
 <Section name="login">
     <Register href="/">
       <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-        <form class="flex flex-col space-y-6" action="/" on:submit={handleSubmit}>
+        <form class="flex flex-col space-y-6" action="/login" on:submit={handleSubmit}>
           <h3 class="text-xl font-medium text-gray-900 dark:text-white p-0">Register</h3>
           <div class="grid grid-cols-2">
             <Label class="space-y-2 col-span-1 mr-1">

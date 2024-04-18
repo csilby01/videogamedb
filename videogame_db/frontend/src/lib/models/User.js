@@ -11,7 +11,18 @@ class Users extends Model{
             console.log(error)
             return null
         }
-      }
+    }
+    static async findByUsername(userName){
+        try{
+            const user = await Users.findOne({
+                where: { username: userName }
+        });
+        return user ? user : null;
+        } catch (error) {
+            console.log(error);
+            return null;
+        }
+    }
 }
 Users.init(
     {

@@ -7,9 +7,13 @@
     let username = "";
     let password = "";
 
-    function handleSubmit(){
-        let loginFields={username, password};
-        console.log(loginFields);
+    async function handleSubmit(event){
+        event.preventDefault(); // Prevent the default form submission
+        const formData = new FormData(event.target);
+        const response = await fetch('/login', {
+            method: 'POST',
+            body: formData
+        });
     }
 </script>
 
@@ -17,7 +21,7 @@
 <Section name="login">
     <Register href="/">
       <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-        <form class="flex flex-col space-y-6" action="/">
+        <form class="flex flex-col space-y-6" action="/" on:submit={handleSubmit}>
           <h3 class="text-xl font-medium text-gray-900 dark:text-white p-0">Login</h3>
           <Label class="space-y-2">
             <span>Username</span>
@@ -27,7 +31,7 @@
             <span>Your password</span>
             <Input type="password" name="password" placeholder="•••••" bind:value={password} required />
           </Label>
-          <Button on:click={handleSubmit} class="w-full1">Sign in</Button>
+          <Button type = "submit" class="w-full1">Sign in</Button>
           <p class="text-sm font-light text-gray-500 dark:text-gray-400">
             Don’t have an account yet? <a href="/signup" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign up</a>
           </p>
