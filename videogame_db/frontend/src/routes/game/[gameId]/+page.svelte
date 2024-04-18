@@ -7,7 +7,6 @@
     import { GradientButton, Carousel } from 'flowbite-svelte';
     import { page } from '$app/stores';
     
-
     const gameId = $page.params.gameId;
 
     export let data;
@@ -57,22 +56,21 @@
     <div class="col-span-2 m-2 p-2 border border-slate-200 shadow-md rounded-lg self-start">
         <img src={coverURL} alt="game 1" class='pb-2'/>
         <h1>{game.release_date.substring(0,10)}</h1>
-        <h1>{gameGenresAndThemes}</h1>
+        {#each gameGenresAndThemes as genre}
+            <h1>{genre}</h1>
+        {/each}
     </div>
     <div class="col-span-3 m-2">
         <h1 class="text-5xl text-center whitespace-nowrap font-semibold dark:text-white">{game.title}</h1>
         <p>{game.description}</p>
         <Carousel {images} let:Indicators let:Controls>
-            <a slot="slide" href="/game" target="_blank" let:Slide let:index>
-                <Slide image={images[index]} />
-            </a>
             <Controls />
             <Indicators />
         </Carousel>
     </div>
     <div class="col-span-2 grid grid-rows-1 items-center justify-center pb-1 m-2 border border-slate-200 shadow-md rounded-lg self-start">
         <div class="row-span-1"> 
-            <h1 class= " text-2xl text-center font-semibold dark:text-white:">Critic Rating: {game.avg_rating}%</h1>
+            <h1 class= " text-2xl text-center font-semibold dark:text-white:">Critic Rating: {game.avg_rating.toFixed(2)}%</h1>
             <h1 class= " text-2xl text-center font-semibold dark:text-white:">Avg Rating: 3.54 Stars</h1>
             <BarGraph />
         </div>

@@ -36,7 +36,7 @@
 </div>
 
 <div class="flex flex-row justify-center items-center border border-slate-200 shadow-md rounded-lg mx-28 py-9">
-   <h1 class="text-5xl self-center whitespace-nowrap font-semibold text-primary-600 dark:text-primary-500">Video Game DB</h1>
+   <h1 class="text-5xl self-center whitespace-nowrap font-semibold text-primary-600 dark:text-primary-500">GameGather</h1>
 </div>
 
 <div class="grid grid-cols-5 gap-2 my-10">
