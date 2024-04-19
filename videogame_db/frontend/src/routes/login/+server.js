@@ -1,23 +1,26 @@
-import { sequelize } from '/src/lib/db/db.js';
-import User from '$lib/models/User.js'
+import { redirect, json } from '@sveltejs/kit';
+import * as cookie from 'cookie';
+import { loginUser } from '$lib/authService.js';
 
 export async function POST({ request }) {
-    const form = await request.formData();
-    const username = form.get('username');
-    const password = form.get('password');
-    console.log(form)
-    let user;
-    try{
-        user = await User.findByUsername(username)
-        console.log('Found User:', user.username);
-    } catch (error){
-        console.log("User not found");
+    const formData = await request.formData();
+    const email = formData.get('email');
+    const password = formData.get('password');
+
+    const token = await loginUser(email, password);
+    if (!token) {
+        return json({ error: 'Invalid credentials' }, { status: 401 });
     }
 
-    if(user){
-        if(user.password = password)
-        {
-            console.log("success")
-        }
-    }
+    // Generate JWT token and set cookie here...
+    const headers = {
+        'Set-Cookie': cookie.serialize('auth', token, {
+            path: '/',
+            httpOnly: true,
+            sameSite: 'strict',
+            // secure: process.env.NODE_ENV === 'production', // Uncomment in production
+        })
+    };
+
+    throw redirect(303, '/', headers);
 }
