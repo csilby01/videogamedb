@@ -7,6 +7,7 @@
 
     let search = "";
     function handleSubmitSearch(event) {
+      console.log("hi");
       event.preventDefault();
       goto(`/search?query=${encodeURIComponent(search)}`);
     }
