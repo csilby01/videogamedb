@@ -7,6 +7,8 @@
     import { quintOut } from 'svelte/easing';
 
     export let data;
+
+    const reviews = JSON.parse(data.post.recentReviews);
     
     let game1 = JSON.parse(data.post.threeGames[0]);
     let game2 = JSON.parse(data.post.threeGames[1]);
@@ -89,15 +91,11 @@
 
 <div class= "mx-24 my-5">
     <h1 class="self-center whitespace-nowrap text-xl font-semibold dark:text-white">Recent Reviews: </h1>
+    {#each reviews as review}
     <div>
-        <Review />
+        <Review reviewInfo = {review} />
     </div>
-    <div>
-        <Review />
-    </div>
-    <div>
-        <Review />
-    </div>
+    {/each}
 </div>
 
 <style>
@@ -116,17 +114,5 @@
         margin-left: 1.25rem;
         margin-right: 1.25rem;
         padding-top: 0.75rem;
-    }
-    .aspect-ratio-box {
-        position: relative;
-        width: 100%;
-        padding-top: 10%;
-    }
-    .aspec-ratio-box-inner{
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
     }
 </style>

@@ -85,9 +85,7 @@
 
     <div class="col-span-5 m-2">
         <h1 class="self-center whitespace-nowrap text-xl font-semibold dark:text-white">Recent Reviews: </h1>
-        <Review />
-        <Review />
-        <Review />
+        
     </div>
 
     <div class="col-span-1 m-2"></div>

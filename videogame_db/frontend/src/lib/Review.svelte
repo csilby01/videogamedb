@@ -2,29 +2,30 @@
     import { Avatar, P, TextPlaceholder } from 'flowbite-svelte';
     import pfp from '$lib/images/pfp_placeholder.jpg';
     import game1 from '$lib/images/game1_placeholder.png';
+
+    export let reviewInfo;
 </script>
 
 <div class="review_layout border border-slate-200 shadow-md rounded-lg my-3 p-3">
     <div class="col_1">
-        <h1 class="row-span-1"><a href="/game" class="hover:underline">Game 1</a></h1>
-        <a href="/game"><img src={game1} alt="game1" class="row-span-1"/></a>
+        <h1 class="row-span-1"><a href="/game/{reviewInfo.game_id}" class="hover:underline">{reviewInfo.gamename}</a></h1>
+        <a href="/game/{reviewInfo.game_id}"><img src={reviewInfo.coverURL} alt="game1" class="row-span-1"/></a>
     </div>
     <div class="col_2 mx-3">
         <div class="row-span-1">
             <div class="flex items-center space-x-4 rtl:space-x-reverse">
                 <a href="/profile"><Avatar src={pfp} /></a>
                 <div class="space-y-1">
-                    <div><P><strong><a href="/profile" class="hover:underline">User</a></strong> played <strong><a href="/game" class="hover:underline">Game 1</a></strong></P></div>
+                    <div><P><strong><a href="/profile/{reviewInfo.user_id}" class="hover:underline">{reviewInfo.username}</a></strong> played <strong><a href="/game/{reviewInfo.game_id}" class="hover:underline">{reviewInfo.gamename}</a></strong></P></div>
                 </div>
             </div>
         </div>
         <div class="row-span-1">
-            <TextPlaceholder size="xl" class="py-4"/>
-            <TextPlaceholder size="xl mt-3" class="pt-2"/>
+            <p>{reviewInfo.review_text}</p>
         </div>
     </div>
     <div class="col_3">
-        Rating
+        {reviewInfo.rating} Stars
     </div>
 </div>
 
