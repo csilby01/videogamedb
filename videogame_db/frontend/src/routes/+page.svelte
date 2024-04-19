@@ -5,7 +5,6 @@
     import { Carousel } from 'flowbite-svelte';
     import { fade } from 'svelte/transition';
     import { quintOut } from 'svelte/easing';
-    import { onMount } from 'svelte';
 
     export let data;
     
