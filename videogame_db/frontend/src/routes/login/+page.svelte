@@ -1,8 +1,20 @@
+<script context="module">
+
+  export async function load({ session }) {
+      return {
+          props: {
+              session: session
+          }
+      };
+  }
+  
+</script>
 <!-- Login Page -->
 <script>
     import { Section, Register } from "flowbite-svelte-blocks";
     import { Button, Label, Input } from "flowbite-svelte";
     import Navbar from '../../lib/Navbar.svelte';
+  
 
     let username = "";
     let password = "";
@@ -12,24 +24,44 @@
         const formData = new FormData(event.target);
         const response = await fetch('/login', {
             method: 'POST',
-            body: formData
+            body: formData,
+            credentials: 'include'
         });
+
+    if (response.ok) {
+        window.location.href = '/'; 
+    } else {
+       
+        const result = await response.json(); // Assuming the server sends JSON with an error message
+        console.error('Login failed:', result.error);
+        alert('Login failed: ' + result.error); // Display error message to user
     }
+  }
+
+  export let session;
 </script>
 
-<Navbar />
+
+
+
+
+
+
+
+
+<Navbar {session}/>
 <Section name="login">
     <Register href="/">
       <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-        <form class="flex flex-col space-y-6" action="/" on:submit={handleSubmit}>
+        <form class="flex flex-col space-y-6" action="/" on:submit|preventDefault={handleSubmit}>
           <h3 class="text-xl font-medium text-gray-900 dark:text-white p-0">Login</h3>
           <Label class="space-y-2">
-            <span>Username</span>
-            <Input type="username" name="username" placeholder="Username" bind:value={username} required />
+            <span>Email</span>
+            <Input type="email" name="email" placeholder="Email" bind:value={username} required />
           </Label>
           <Label class="space-y-2">
             <span>Your password</span>
-            <Input type="password" name="password" placeholder="•••••" bind:value={password} required />
+            <Input type="password" name="password" placeholder="password" bind:value={password} required />
           </Label>
           <Button type = "submit" class="w-full1">Sign in</Button>
           <p class="text-sm font-light text-gray-500 dark:text-gray-400">
