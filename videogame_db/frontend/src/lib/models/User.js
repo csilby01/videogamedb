@@ -2,10 +2,10 @@ import {sequelize} from '../db/db.js'
 import { Model, DataTypes } from 'sequelize' 
 
 
-class Users extends Model{
+class User extends Model{
     static async findUser(id){
         try {
-            const user = await Users.findByPk(id)
+            const user = await User.findByPk(id)
             return user ? user : null;
         } catch (error) {
             console.log(error)
@@ -14,7 +14,7 @@ class Users extends Model{
     }
     static async findByUsername(userName){
         try{
-            const user = await Users.findOne({
+            const user = await User.findOne({
                 where: { username: userName }
         });
         return user ? user : null;
@@ -24,7 +24,7 @@ class Users extends Model{
         }
     }
 }
-Users.init(
+User.init(
     {
         user_id:{
             type: DataTypes.INTEGER,
@@ -74,9 +74,9 @@ Users.init(
     },
     {
         sequelize,
-        modelName: 'Users',
-        tableName: 'Users',
+        modelName: 'User',
+        tableName: 'User',
     }
 )
 
-export default Users;
+export default User;

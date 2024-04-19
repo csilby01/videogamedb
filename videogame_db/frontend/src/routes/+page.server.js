@@ -1,12 +1,14 @@
 /** @type {import('./$types').PageServerLoad} */
 import { sequelize } from '/src/lib/db/db.js';
 import Game from '$lib/models/Game.js';
+import Reviews from '$lib/models/Reviews.js';
 import { getGameCover } from '../lib/db/utils/getCover.js';
 
 export async function load() {
     let game;
     let top3Games = [];
     let gameCovers = [];
+    let reviews;
 
     // get top 3 games of the month
     try {
@@ -34,7 +36,7 @@ export async function load() {
     //get games covers
     for (let i = 0; i < top3Games.length; i++){
         game = JSON.parse(top3Games[i])
-        try{
+        try {
             let coverURL = await getGameCover(game.game_photo);
             gameCovers.push(coverURL);
         }catch (error){
@@ -42,10 +44,21 @@ export async function load() {
         }
     }
 
+    //get recent reviews
+    // try {
+    //     reviews = await Reviews.findAll({
+    //         order: [['updatedAt', 'DESC']],
+    //         limit: 5
+    //     });
+    // } catch (error){
+    //     console.log("Failed to get reviews: ", error);
+    // }
+
     return {
         post: {
             threeGames: top3Games,
             covers: gameCovers
+            // recentReviews: reviews
         }
     };
 };

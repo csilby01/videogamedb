@@ -1,10 +1,10 @@
-import Users from '$lib/models/Users';
+import User from '$lib/models/User';
 import { generateToken } from '$lib/auth';
 
 export async function post({ request }) {
     const { username, password } = await request.json();
 
-    const user = await Users.findUserByUsername(username);
+    const user = await User.findUserByUsername(username);
     if (!user || !user.verifyPassword(password)) {
         return {
             status: 401,
