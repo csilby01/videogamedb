@@ -4,12 +4,14 @@
 	import game1 from '$lib/images/game1_placeholder.png';
     import game2 from '$lib/images/game2_placeholder.png';
     import game3 from '$lib/images/game3_placeholder.png';
+	import Review from "$lib/Review.svelte";
 	import BarGraph from "$lib/BarGraph.svelte";
 	import { page } from '$app/stores';
     
     // const userId = $page.params.userId;
 	export let data;
 	const user = JSON.parse(data.post.user);
+	const reviews = JSON.parse(data.post.recentReviews);
 
     const images = [
         {
@@ -106,13 +108,9 @@
 </div>
 <div class= "mx-24 my-12">
     <h1 class="self-center whitespace-nowrap text-xl font-semibold dark:text-white">User's Reviews: </h1>
-    <!-- <div>
-        <Review />
-    </div>
-    <div>
-        <Review />
-    </div>
-    <div>
-        <Review />
-    </div> -->
+    {#each reviews as review}
+		<div>
+			<Review reviewInfo = {review} />
+		</div>
+    {/each}
 </div>

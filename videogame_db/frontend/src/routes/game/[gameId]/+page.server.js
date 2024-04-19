@@ -48,7 +48,6 @@ export async function load({ params }) {
     }
 
     //get recent reviews for game
-    // get recent reviews
     try {
         reviews = await Reviews.findAll({
             where: { game_id: gameId},
