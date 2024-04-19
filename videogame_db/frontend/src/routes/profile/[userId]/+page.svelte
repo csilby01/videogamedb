@@ -1,13 +1,15 @@
 <!-- Profile -->
 <script>
-	import Navbar from "../../lib/Navbar.svelte";
+	import Navbar from "$lib/Navbar.svelte";
 	import game1 from '$lib/images/game1_placeholder.png';
     import game2 from '$lib/images/game2_placeholder.png';
     import game3 from '$lib/images/game3_placeholder.png';
-	import BarGraph from "../../lib/BarGraph.svelte";
-	import Review from '../../lib/Review.svelte';
-
-
+	import BarGraph from "$lib/BarGraph.svelte";
+	import { page } from '$app/stores';
+    
+    // const userId = $page.params.userId;
+	export let data;
+	const user = JSON.parse(data.post.user);
 
     const images = [
         {
@@ -72,10 +74,10 @@
 	<div class="grid grid-cols-4 my-8">
 		<div class = "col-span-1 mx-10">
 			<div class ="flex items-center my-2">
-				Name
+				{user.firstName} {user.lastName}
 			</div>
 			<div class ="flex items-center my-2">
-				Username
+				Username: <span class="text-yellow-600 font-semibold mx-2">{user.username}</span>
 			</div>
 			<div class ="flex items-center my-2">
 				Edit Profile
@@ -104,7 +106,7 @@
 </div>
 <div class= "mx-24 my-12">
     <h1 class="self-center whitespace-nowrap text-xl font-semibold dark:text-white">User's Reviews: </h1>
-    <div>
+    <!-- <div>
         <Review />
     </div>
     <div>
@@ -112,5 +114,5 @@
     </div>
     <div>
         <Review />
-    </div>
+    </div> -->
 </div>

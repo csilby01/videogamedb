@@ -23,6 +23,14 @@ class User extends Model{
             return null;
         }
     }
+    static async findBySearch(search){
+        const query = 'SELECT * FROM User WHERE username LIKE :searched';
+        const options = {
+          replacements: { searched: `%${search}%` },
+          model: User,
+        }
+      return await sequelize.query(query, options);
+    }
 }
 User.init(
     {
