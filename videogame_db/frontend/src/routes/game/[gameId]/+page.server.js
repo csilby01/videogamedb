@@ -1,6 +1,7 @@
 import { sequelize } from '/src/lib/db/db.js';
 import { getGameCover } from '../../../lib/db/utils/getCover';
-import Game from '$lib/models/Game.js'
+import Game from '$lib/models/Game.js';
+import Reviews from '$lib/models/Reviews.js';
 import { getGenresAndThemes } from '../../../lib/db/utils/getGenres';
 import { getScreenshot } from '../../../lib/db/utils/getScreenshots';
 
@@ -9,11 +10,12 @@ export async function load({ params }) {
     let game;
     let coverURL;
     let genresthemes;
+    let reviews;
     let screenshots = [];
     const { gameId } = params;
     console.log("Fetching game with ID:", gameId);
 
-    // get Game from DB
+    //get Game from DB
     try {
         game = await Game.findByPk(gameId);
         console.log('Found Game:', game.title);
@@ -44,6 +46,36 @@ export async function load({ params }) {
         } catch(error){
             console.log(`Screenshot ID ${screenshotIDs[i]} not found`);
         }
+    }
+
+    //get recent reviews for game
+    // get recent reviews
+    try {
+        reviews = await Reviews.findAll({
+            where: { game_id: gameId},
+            order: [['updatedAt', 'DESC']],
+            limit: 5
+        });
+    } catch (error){
+        console.log("Failed to get reviews: ", error);
+    }
+
+    // format review data
+    reviews = JSON.stringify(reviews);
+    reviews = JSON.parse(reviews);
+    for (let i = 0; i < reviews.length; i++) {
+        // get username
+        try {
+            let user = await User.findByPk(reviews[i].user_id);
+            reviews[i]["username"] = user.username;
+        } catch (error){
+            console.log("Failed to get username: ", error);
+        }
+
+        // get game name
+        reviews[i]["gamename"] = game.title;
+        // get game cover
+        reviews[i]["coverURL"] = coverURL;
     }
 
     return {
