@@ -6,8 +6,11 @@
     import game3 from '$lib/images/game3_placeholder.png';
 	import BarGraph from "../../lib/BarGraph.svelte";
 	import Review from '../../lib/Review.svelte';
-
-
+	import { page } from '$app/stores';
+    
+    // const userId = $page.params.userId;
+	export let data;
+	const user = JSON.parse(data.post.user);
 
     const images = [
         {
@@ -72,7 +75,7 @@
 	<div class="grid grid-cols-4 my-8">
 		<div class = "col-span-1 mx-10">
 			<div class ="flex items-center my-2">
-				Name
+				{user.firstName} {user.lastName}
 			</div>
 			<div class ="flex items-center my-2">
 				Username
