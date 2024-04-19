@@ -3,9 +3,9 @@ import './lib/db/initModels.js'; // This ensures models are loaded and associate
 
 async function startApp() {
   try {
-    await sequelize.sync(); // Add { force: true } during development if necessary
+    await sequelize.sync();
+    // const queryInterface = sequelize.getQueryInterface();
     console.log('Database synced');
-    // Start your server or application
   } catch (error) {
     console.error('Unable to sync database:', error);
   }
