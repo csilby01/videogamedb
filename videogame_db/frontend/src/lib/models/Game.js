@@ -1,8 +1,17 @@
 import { DATE, DataTypes, Model } from 'sequelize'
 import {sequelize} from '../db/db.js'
 
-class Game extends Model {}
+class Game extends Model {
 
+  static async findBySearch(search){
+    const query = 'SELECT * FROM Game WHERE title LIKE :searched';
+    const options = {
+      replacements: { searched: `%${search}%` },
+      model: Game,
+    }
+  return await sequelize.query(query, options);
+  }
+}
 Game.init({
   game_id: {
     type: DataTypes.INTEGER,
