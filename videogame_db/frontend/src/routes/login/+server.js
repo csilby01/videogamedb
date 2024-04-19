@@ -12,13 +12,18 @@ export async function POST({ request }) {
         return json({ error: 'Invalid credentials' }, { status: 401 });
     }
 
+    if (!request.locals) {
+        request.locals = {};  // Safeguard: initialize if not already initialized
+    }
+    
+    request.locals.user = { email, token };
     // Generate JWT token and set cookie here...
     const headers = {
         'Set-Cookie': cookie.serialize('auth', token, {
             path: '/',
             httpOnly: true,
             sameSite: 'strict',
-            // secure: process.env.NODE_ENV === 'production', // Uncomment in production
+            secure: process.env.NODE_ENV === 'production', // Uncomment in production
         })
     };
 

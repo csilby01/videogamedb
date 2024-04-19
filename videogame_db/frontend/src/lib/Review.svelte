@@ -4,8 +4,10 @@
     import game1 from '$lib/images/game1_placeholder.png';
 
     export let reviewInfo;
+
 </script>
 
+{#if reviewInfo}
 <div class="review_layout border border-slate-200 shadow-md rounded-lg my-3 p-3">
     <div class="col_1">
         <h1 class="row-span-1"><a href="/game/{reviewInfo.game_id}" class="hover:underline">{reviewInfo.gamename}</a></h1>
@@ -28,6 +30,9 @@
         {reviewInfo.rating} Stars
     </div>
 </div>
+{:else}
+<p>Loading review information...</p>
+{/if}
 
 <style>
     .review_layout{

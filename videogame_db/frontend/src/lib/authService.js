@@ -3,6 +3,7 @@
 import jwt from 'jsonwebtoken';
 import  User  from '/src/lib/models/User.js'; // Update this path to the actual User model location
 import bcrypt from 'bcrypt';
+import { goto } from '$app/navigation';
 const JWT_SECRET = '5d4673d18d28b71dded353d00f8be8ca39918ad8e462d95db29e4a7d0627f1e561731a7b7e08d7fdacb758b95733f44a5e44be6e0af52efa23460673b4c7458c'; // Make sure to use an environment variable in production
 const SALT_ROUNDS = 10;
 
@@ -51,4 +52,13 @@ export function verifyToken(token) {
             resolve(decoded);
         });
     });
+}
+
+function logout() {
+    fetch('/logout', { method: 'GET' })
+        .then(response => {
+            if (response.ok) {
+                goto('/');  // redirect to home or login page
+            }
+        });
 }

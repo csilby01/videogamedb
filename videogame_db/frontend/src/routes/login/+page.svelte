@@ -1,8 +1,20 @@
+<script context="module">
+
+  export async function load({ session }) {
+      return {
+          props: {
+              session: session
+          }
+      };
+  }
+  
+</script>
 <!-- Login Page -->
 <script>
     import { Section, Register } from "flowbite-svelte-blocks";
     import { Button, Label, Input } from "flowbite-svelte";
     import Navbar from '../../lib/Navbar.svelte';
+  
 
     let username = "";
     let password = "";
@@ -17,7 +29,7 @@
         });
 
     if (response.ok) {
-        window.location.href = '/profile'; 
+        window.location.href = '/'; 
     } else {
        
         const result = await response.json(); // Assuming the server sends JSON with an error message
@@ -25,9 +37,19 @@
         alert('Login failed: ' + result.error); // Display error message to user
     }
   }
+
+  export let session;
 </script>
 
-<Navbar />
+
+
+
+
+
+
+
+
+<Navbar {session}/>
 <Section name="login">
     <Register href="/">
       <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
