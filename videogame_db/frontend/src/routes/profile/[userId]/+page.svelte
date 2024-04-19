@@ -74,7 +74,7 @@
 	<div class="grid grid-cols-4 my-8">
 		<div class = "col-span-1 mx-10">
 			<div class ="flex items-center my-2">
-				{user.firstName} {user.lastName}
+				<span class=" font-semibold">{user.firstName} {user.lastName}</span>
 			</div>
 			<div class ="flex items-center my-2">
 				Username: <span class="text-yellow-600 font-semibold mx-2">{user.username}</span>

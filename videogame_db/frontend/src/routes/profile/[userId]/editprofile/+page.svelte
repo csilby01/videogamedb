@@ -2,12 +2,14 @@
 <script>
     import { Section, Register } from "flowbite-svelte-blocks";
     import { Button, Label, Input} from "flowbite-svelte";
-	import Navbar from "../../../lib/Navbar.svelte";
+	import Navbar from "$lib/Navbar.svelte";
 
-    let username = "";
-    let name = [];
+    export let data;
+    const user = JSON.parse(data.post.user);
+
+    let firstName = user.firstName;
+    let lastName = user.lastName;
     let password = "";
-    let email = "";
     let  avatar, fileinput;
     
     const onFileSelected =(e)=>{
@@ -19,10 +21,29 @@
             };
         console.log(fileinput)
     }
-    function handleSubmit(){
-        let loginFields={username, password, fileinput};
-        console.log(loginFields);
+
+    async function handleSubmit(){
+        let userFields={firstName, lastName, password};
+        
+        try {
+            const response = await fetch(`/profile/${user.user_id}/editprofile`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json'},
+                body: JSON.stringify(userFields)
+            });
+
+            const result = await response.json();
+            if (result.success){
+                console.log('Profile edited:', result.data);
+            }
+            else {
+                console.error(`Failed to edit profile: ${result.message}`);
+            }
+        } catch (error) {
+            console.error('Error editing profile:', error);
+        }
     }
+    
 
 </script>
 <style>
@@ -32,13 +53,6 @@
 		justify-content:center;
 		flex-flow:column;
 }
- 
-	.upload{
-		display:flex;
-	height:50px;
-		width:50px;
-		cursor:pointer;
-	}
 	.avatar{
 		display:flex;
 		height:200px;
@@ -52,11 +66,11 @@
         <div class="grid grid-cols-2">
             <Label class="space-y-2 col-span-1 mr-1">
                 <span>First name</span>
-                <Input type="text" id="firstname" placeholder="First Name" bind:value={name[0]} required />
+                <Input type="text" id="firstname" placeholder="{user.firstName}" bind:value={firstName} required />
             </Label>
             <Label class="space-y-2 col-span-1 ml-1">
                 <span>Last name</span>
-                <Input type="text" id="lastname" placeholder="Last Name" bind:value={name[1]} required />
+                <Input type="text" id="lastname" placeholder="{user.lastName}" bind:value={lastName} required />
             </Label>
         </div>
         <Label class="space-y-2">
