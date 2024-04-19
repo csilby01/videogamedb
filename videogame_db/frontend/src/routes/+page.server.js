@@ -10,21 +10,21 @@ export async function load() {
 
     // get top 3 games of the month
     try {
-        game = await Game.findByPk(9866);
+        game = await Game.findByPk(9865);
         top3Games.push(JSON.stringify(game));
         console.log('Found Game:', game.title);
     } catch (error){
         console.log("Game not found");
     }
     try {
-        game = await Game.findByPk(112248);
+        game = await Game.findByPk(18531);
         top3Games.push(JSON.stringify(game));
         console.log('Found Game:', game.title);
     } catch (error){
         console.log("Game not found");
     }
     try {
-        game = await Game.findByPk(18527);
+        game = await Game.findByPk(112299);
         top3Games.push(JSON.stringify(game));
         console.log('Found Game:', game.title);
     } catch (error){
