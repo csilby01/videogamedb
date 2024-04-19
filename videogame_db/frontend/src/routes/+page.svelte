@@ -61,8 +61,6 @@
                     <a href="/game/{popCover?.gameID}" class="hover:underline">{popCover?.title}</a>
                 </div>
             </div>
-        </div>
-        <div class="row-span-1 flex flex-row justify-center items-center">
             <div class="max-w-4xl min-w-48 w-fit mx-24 shadow-lg rounded-xl">
                 <h1 class="whitespace-nowrap text-xl font-semibold dark:text-white">New Releases</h1>
                 <Carousel {images} imgClass="object-contain h-full w-fit rounded-sm" let:Indicators let:Controls on:change={({ detail }) => (newCover = detail)}>
@@ -73,7 +71,7 @@
                     <a href="/game/{newCover?.gameID}" class="hover:underline">{newCover?.title}</a>
                 </div>
             </div>
-        </div>       
+        </div> 
     </div>
     <div class="top_3_games_layout col-span-1 border border-slate-200 shadow-md rounded-lg mr-3 pb-3">
         <h1 class="text-2xl text-center font-semibold">Top 3 Games of the Month</h1>

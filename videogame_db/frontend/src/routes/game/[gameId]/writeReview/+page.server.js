@@ -10,10 +10,8 @@ export async function load({ params }) {
     const { gameId } = params;
 
     // get Game from DB
-    console.log("Fetching game with ID:", gameId);
     try {
         game = await Game.findByPk(gameId);
-        console.log('Found Game:', game.title);
     } catch (error){
         console.log("Game not found");
     }

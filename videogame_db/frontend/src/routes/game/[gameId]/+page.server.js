@@ -2,6 +2,7 @@ import { sequelize } from '/src/lib/db/db.js';
 import { getGameCover } from '../../../lib/db/utils/getCover';
 import Game from '$lib/models/Game.js';
 import Reviews from '$lib/models/Reviews.js';
+import User from '$lib/models/User.js';
 import { getGenresAndThemes } from '../../../lib/db/utils/getGenres';
 import { getScreenshot } from '../../../lib/db/utils/getScreenshots';
 
@@ -13,12 +14,10 @@ export async function load({ params }) {
     let reviews;
     let screenshots = [];
     const { gameId } = params;
-    console.log("Fetching game with ID:", gameId);
 
     //get Game from DB
     try {
         game = await Game.findByPk(gameId);
-        console.log('Found Game:', game.title);
     } catch (error){
         console.log("Game not found");
     }
@@ -83,7 +82,8 @@ export async function load({ params }) {
             game: JSON.stringify(game),
             cover: coverURL,
             genresAndThemes: JSON.stringify(genresthemes),
-            screenshotURLs: screenshots
+            screenshotURLs: screenshots,
+            recentReviews: JSON.stringify(reviews)
         }
     };
 }

@@ -16,6 +16,7 @@
     const genres = genresAndThemes["genres"];
     const themes = genresAndThemes["themes"];
     const screenshotURLs = data.post.screenshotURLs;
+    const reviews = JSON.parse(data.post.recentReviews);
 
     let gameGenres = JSON.parse(game.genres);
     let gameThemes = JSON.parse(game.themes);
@@ -85,7 +86,11 @@
 
     <div class="col-span-5 m-2">
         <h1 class="self-center whitespace-nowrap text-xl font-semibold dark:text-white">Recent Reviews: </h1>
-        
+        {#each reviews as review}
+            <div>
+                <Review reviewInfo = {review} />
+            </div>
+        {/each}
     </div>
 
     <div class="col-span-1 m-2"></div>
