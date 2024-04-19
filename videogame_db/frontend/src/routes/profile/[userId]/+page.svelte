@@ -1,11 +1,10 @@
 <!-- Profile -->
 <script>
-	import Navbar from "../../lib/Navbar.svelte";
+	import Navbar from "$lib/Navbar.svelte";
 	import game1 from '$lib/images/game1_placeholder.png';
     import game2 from '$lib/images/game2_placeholder.png';
     import game3 from '$lib/images/game3_placeholder.png';
-	import BarGraph from "../../lib/BarGraph.svelte";
-	import Review from '../../lib/Review.svelte';
+	import BarGraph from "$lib/BarGraph.svelte";
 	import { page } from '$app/stores';
     
     // const userId = $page.params.userId;
@@ -107,7 +106,7 @@
 </div>
 <div class= "mx-24 my-12">
     <h1 class="self-center whitespace-nowrap text-xl font-semibold dark:text-white">User's Reviews: </h1>
-    <div>
+    <!-- <div>
         <Review />
     </div>
     <div>
@@ -115,5 +114,5 @@
     </div>
     <div>
         <Review />
-    </div>
+    </div> -->
 </div>
