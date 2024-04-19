@@ -77,7 +77,7 @@
 				{user.firstName} {user.lastName}
 			</div>
 			<div class ="flex items-center my-2">
-				Username
+				Username: <span class="text-yellow-600 font-semibold mx-2">{user.username}</span>
 			</div>
 			<div class ="flex items-center my-2">
 				Edit Profile
