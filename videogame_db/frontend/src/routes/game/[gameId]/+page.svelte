@@ -17,6 +17,7 @@
     const themes = genresAndThemes["themes"];
     const screenshotURLs = data.post.screenshotURLs;
     const reviews = JSON.parse(data.post.recentReviews);
+    const avg_rating = data.post.avgrating;
 
     let gameGenres = JSON.parse(game.genres);
     let gameThemes = JSON.parse(game.themes);
@@ -64,7 +65,7 @@
         {/each}
     </div>
     <div class="col-span-3 m-2">
-        <h1 class="text-5xl text-center whitespace-nowrap font-semibold dark:text-white">{game.title}</h1>
+        <h1 class="text-5xl text-center font-semibold dark:text-white">{game.title}</h1>
         <p class="py-5">{game.description}</p>
         <Carousel {images} let:Indicators let:Controls>
             <Controls />
@@ -74,7 +75,7 @@
     <div class="col-span-2 grid grid-rows-1 items-center justify-center pb-1 m-2 border border-slate-200 shadow-md rounded-lg self-start">
         <div class="row-span-1"> 
             <h1 class= " text-2xl text-center font-semibold dark:text-white:">Critic Rating: {game.avg_rating.toFixed(2)}%</h1>
-            <h1 class= " text-2xl text-center font-semibold dark:text-white:">Avg Rating: 3.54 Stars</h1>
+            <h1 class= " text-2xl text-center font-semibold dark:text-white:">Avg Rating: {avg_rating} Stars</h1>
             <BarGraph />
         </div>
         <div class="flex items-center justify-center p-3">

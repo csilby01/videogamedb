@@ -12,6 +12,7 @@ export async function load({ params }) {
     let coverURL;
     let genresthemes;
     let reviews;
+    let ratings;
     let screenshots = [];
     const { gameId } = params;
 
@@ -52,11 +53,30 @@ export async function load({ params }) {
         reviews = await Reviews.findAll({
             where: { game_id: gameId},
             order: [['updatedAt', 'DESC']],
-            limit: 5
+            limit: 10
         });
     } catch (error){
         console.log("Failed to get reviews: ", error);
     }
+
+    //avg reviews
+    try {
+        ratings = await Reviews.findAll({
+            where: {game_id: gameId},
+            attributes: ['rating']
+        })
+    } catch (error){
+        console.log("Failed to get all review ratings: ", error);
+    }
+
+    ratings = JSON.stringify(ratings);
+    ratings = JSON.parse(ratings);
+    let avg_rating = 0;
+    for (let i = 0; i < ratings.length; i++) {
+        avg_rating += ratings[i].rating;
+    }
+    avg_rating = (avg_rating / ratings.length).toFixed(2);
+   
 
     // format review data
     reviews = JSON.stringify(reviews);
@@ -82,7 +102,8 @@ export async function load({ params }) {
             cover: coverURL,
             genresAndThemes: JSON.stringify(genresthemes),
             screenshotURLs: screenshots,
-            recentReviews: JSON.stringify(reviews)
+            recentReviews: JSON.stringify(reviews),
+            avgrating: avg_rating
         }
     };
 }

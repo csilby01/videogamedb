@@ -5,7 +5,8 @@
 	import { ChevronDownOutline, PaperClipOutline, MapPinAltSolid } from 'flowbite-svelte-icons';
     import Navbar from "../../../../lib/Navbar.svelte";
     import { page } from '$app/stores';
-    
+    import { goto } from '$app/navigation';
+
     const gameId = $page.params.gameId;
 
     export let data;
@@ -37,11 +38,12 @@
 
             const result = await response.json();
             if (result.success){
-                console.log('Review posted:', result.data);
+                goto(`/game/${gameId}`);
             }
             else {
                 console.error(`Failed to post review: ${result.message}`);
             }
+
         } catch (error) {
             console.error('Error posting review:', error);
         }
