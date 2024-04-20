@@ -1,7 +1,6 @@
 <script>
     import { Avatar, P, TextPlaceholder } from 'flowbite-svelte';
     import pfp from '$lib/images/pfp_placeholder.jpg';
-    import game1 from '$lib/images/game1_placeholder.png';
 
     export let reviewInfo;
 
@@ -22,7 +21,7 @@
                 </div>
             </div>
         </div>
-        <div class="row-span-1">
+        <div class="row-span-1 mt-5 mx-5">
             <p>{reviewInfo.review_text}</p>
         </div>
     </div>
@@ -37,7 +36,8 @@
 <style>
     .review_layout{
         display: grid;
-        grid-template-columns: minmax(100px, 1fr) minmax(400px, 4fr) minmax(50px, 1fr);
+        grid-template-columns: minmax(100px, 1fr) minmax(100px, 4fr) minmax(100px, 1fr);
+        min-width: 300px;
     }
     .col_1 {
         display:grid;
@@ -52,10 +52,10 @@
         display: grid;
         grid-template-rows: 1fr 4fr;
     }
-    .col_2 > :first-child {
+    .col_2 > div {
         display: flex;
         justify-content: center;
-        align-items: center;
+        /* align-items: center; */
     }
     .col_3 {
         display: flex;

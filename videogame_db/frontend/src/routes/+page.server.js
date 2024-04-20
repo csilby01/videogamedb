@@ -46,7 +46,7 @@ export async function load() {
     try {
         reviews = await Reviews.findAll({
             order: [['updatedAt', 'DESC']],
-            limit: 5
+            limit: 15
         });
     } catch (error){
         console.log("Failed to get reviews: ", error);

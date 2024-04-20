@@ -51,7 +51,9 @@
     }
 </script>
 
-<Navbar />
+<div class="sticky top-0 z-50">
+    <Navbar/>
+</div>
 
 <div class="grid grid-cols-7">
     <div class="col-span-2 m-2 p-2 border border-slate-200 shadow-md rounded-lg self-start">
@@ -63,7 +65,7 @@
     </div>
     <div class="col-span-3 m-2">
         <h1 class="text-5xl text-center whitespace-nowrap font-semibold dark:text-white">{game.title}</h1>
-        <p>{game.description}</p>
+        <p class="py-5">{game.description}</p>
         <Carousel {images} let:Indicators let:Controls>
             <Controls />
             <Indicators />
