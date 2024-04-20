@@ -11,6 +11,16 @@ export async function POST({ request }) {
     if (!token) {
         return json({ error: 'Invalid credentials' }, { status: 401 });
     }
+    if (token) {
+        return new Response(JSON.stringify({ success: true }), {
+            status: 200,
+            headers: {
+                'Content-Type': 'application/json',
+                'Set-Cookie': `auth=${token}; Path=/; HttpOnly; SameSite=Strict`,
+                // Add `; Secure` if you're using HTTPS in production
+            }
+        });
+    }
 
     if (!request.locals) {
         request.locals = {};  // Safeguard: initialize if not already initialized

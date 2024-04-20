@@ -4,6 +4,7 @@
   import { SearchOutline } from 'flowbite-svelte-icons';
   import logo from "$lib/images/logo.png";
   import { goto } from '$app/navigation';
+  
 
   let search = "";
   
@@ -18,9 +19,6 @@
           goto('/');
       }
   }
-
-  export let session;
-  console.log('Navbar session:', session);
 </script>
 
 <Navbar>
@@ -44,13 +42,10 @@
   </div>
   <NavUl>
       <NavLi href="/">Home</NavLi>
-      {#if session && session.user}
           <NavLi href="/profile">Profile</NavLi>
           <NavLi on:click={handleLogout}>Logout</NavLi>
-      {:else}
           <NavLi href="/signup">Sign Up</NavLi>
           <NavLi href="/login">Login</NavLi>
-      {/if}
   </NavUl>
 </Navbar>
 
