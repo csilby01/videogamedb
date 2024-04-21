@@ -7,7 +7,7 @@ import { getGenresAndThemes } from '../../../lib/db/utils/getGenres';
 import { getScreenshot } from '../../../lib/db/utils/getScreenshots';
 
 /** @type {import('./$types').PageServerLoad} */
-export async function load({ params }) {
+export async function load({ params, locals }) {
     let game;
     let coverURL;
     let genresthemes;
@@ -96,6 +96,16 @@ export async function load({ params }) {
         reviews[i]["coverURL"] = coverURL;
     }
 
+    const userData = locals.user;
+    let user;
+    try {
+        user = await User.findAll({
+            where: { email: userData.email}
+        });
+    } catch (error){
+        console.log("Failed to get user");
+    }
+
     return {
         post: {
             game: JSON.stringify(game),
@@ -103,7 +113,8 @@ export async function load({ params }) {
             genresAndThemes: JSON.stringify(genresthemes),
             screenshotURLs: screenshots,
             recentReviews: JSON.stringify(reviews),
-            avgrating: avg_rating
+            avgrating: avg_rating,
+            curUser: JSON.stringify(user)
         }
     };
 }

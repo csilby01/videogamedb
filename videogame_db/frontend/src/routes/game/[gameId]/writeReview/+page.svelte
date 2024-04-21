@@ -48,10 +48,15 @@
             console.error('Error posting review:', error);
         }
     }
+
+    let user = data.post.curUser;
+    if (!user){
+        goto('/login')
+    }
 </script>
 
 <div class="sticky top-0 z-50">
-    <Navbar/>
+    <Navbar userInfo = {user}/>
 </div>
 
 <div class=" mx-24 shadow-lg rounded-md border">

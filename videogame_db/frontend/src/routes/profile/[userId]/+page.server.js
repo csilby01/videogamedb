@@ -64,7 +64,7 @@ export async function load({params, locals}) {
         post:{
             user: JSON.stringify(user),
             recentReviews: JSON.stringify(reviews),
-            currUser: JSON.stringify(currUser[0])
+            currUser: JSON.stringify(currUser)
         }
     };
 };

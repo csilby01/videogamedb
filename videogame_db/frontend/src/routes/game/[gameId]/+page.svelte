@@ -50,10 +50,12 @@
             title: `screenshot ${i}`
         })
     }
+
+    let user = data.post.curUser;
 </script>
 
 <div class="sticky top-0 z-50">
-    <Navbar/>
+    <Navbar userInfo = {user}/>
 </div>
 
 <div class="grid grid-cols-7">

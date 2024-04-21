@@ -4,7 +4,7 @@ import Game from '$lib/models/Game.js';
 import User from '$lib/models/User.js';
 
 /** @type {import('./$types').PageServerLoad} */
-export async function load({ params }) {
+export async function load({ params, locals}) {
     let game;
     let coverURL;
     const { gameId } = params;
@@ -23,10 +23,21 @@ export async function load({ params }) {
         console.log("Game cover not found");
     }
 
+    const userData = locals.user;
+    let user;
+    try {
+        user = await User.findAll({
+            where: { email: userData.email}
+        });
+    } catch (error){
+        console.log("Failed to get user");
+    }
+
     return {
         post: {
             game: JSON.stringify(game),
             cover: coverURL,
+            curUser: JSON.stringify(user)
         }
     };
 }
