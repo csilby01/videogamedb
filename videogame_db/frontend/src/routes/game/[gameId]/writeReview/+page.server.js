@@ -37,7 +37,7 @@ export async function load({ params, locals}) {
         post: {
             game: JSON.stringify(game),
             cover: coverURL,
-            curUser: JSON.stringify(user)
+            curUser: JSON.stringify(user[0])
         }
     };
 }

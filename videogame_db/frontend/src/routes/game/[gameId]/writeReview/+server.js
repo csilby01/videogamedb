@@ -8,7 +8,7 @@ export async function POST({ request, params }) {
     try {
         await Reviews.create({
             game_id: review.gameId,
-            user_id: 1,
+            user_id: review.currUserId,
             platform: review.platform,
             review_text: review.review_text,
             rating: review.rating,

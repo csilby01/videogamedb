@@ -8,8 +8,14 @@
     import { goto } from '$app/navigation';
 
     const gameId = $page.params.gameId;
-
     export let data;
+    let currUser = JSON.parse(data.post.curUser);
+    if (!currUser){
+        goto('/login')
+    }
+
+    let currUserId = currUser.user_id;
+
     let currentDate = new Date();
     let options = {
         month: '2-digit', // 2-digit numeric representation of the month
@@ -27,7 +33,7 @@
     let platform = 'Xbox';
 
     async function handleSubmit(){
-        let reviewFields={gameId, currentDate, review_text, platform, rating};
+        let reviewFields={gameId, currUserId, currentDate, review_text, platform, rating};
         
         try {
             const response = await fetch(`/game/${gameId}/writeReview`, {
@@ -48,15 +54,10 @@
             console.error('Error posting review:', error);
         }
     }
-
-    let user = data.post.curUser;
-    if (!user){
-        goto('/login')
-    }
 </script>
 
 <div class="sticky top-0 z-50">
-    <Navbar userInfo = {user}/>
+    <Navbar userInfo = {currUser}/>
 </div>
 
 <div class=" mx-24 shadow-lg rounded-md border">
@@ -69,7 +70,7 @@
             <Textarea id="review_text" placeholder="Write your review here..." class="h-24" bind:value={review_text} required/>
 
             <div>{game.title}</div>
-            <div>Username</div>
+            <div>{currUser.username}</div>
             <div>{formattedDate}</div>
             <div>
                 <label>
