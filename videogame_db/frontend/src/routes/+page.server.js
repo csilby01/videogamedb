@@ -5,7 +5,7 @@ import Reviews from '$lib/models/Reviews.js';
 import User from '$lib/models/User.js';
 import { getGameCover } from '../lib/db/utils/getCover.js';
 
-export async function load() {
+export async function load({locals}) {
     let game;
     let top3Games = [];
     let gameCovers = [];
@@ -82,11 +82,21 @@ export async function load() {
         }
     }
 
+    const userData = locals.user;
+    let user;
+    try {
+        user = await User.findAll({
+            where: { email: userData.email}
+        });
+    } catch (error){
+        console.log("Failed to get user: ", error);
+    }
     return {
         post: {
             threeGames: top3Games,
             covers: gameCovers,
-            recentReviews: JSON.stringify(reviews)
+            recentReviews: JSON.stringify(reviews),
+            curUser: JSON.stringify(user)
         }
     };
 };

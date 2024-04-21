@@ -5,6 +5,7 @@
   import logo from "$lib/images/logo.png";
   import { goto } from '$app/navigation';
   
+  export let userInfo;
 
   let search = "";
   
@@ -19,6 +20,7 @@
           goto('/');
       }
   }
+
 </script>
 
 <Navbar>
@@ -42,10 +44,13 @@
   </div>
   <NavUl>
       <NavLi href="/">Home</NavLi>
-          <NavLi href="/profile">Profile</NavLi>
-          <NavLi on:click={handleLogout}>Logout</NavLi>
-          <NavLi href="/signup">Sign Up</NavLi>
-          <NavLi href="/login">Login</NavLi>
+      {#if userInfo}
+      <NavLi href="/profile">Profile</NavLi>
+      <NavLi on:click={handleLogout}>Logout</NavLi>
+      {:else}
+      <NavLi href="/signup">Sign Up</NavLi>
+      <NavLi href="/login">Login</NavLi>
+      {/if}
   </NavUl>
 </Navbar>
 

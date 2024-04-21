@@ -19,14 +19,12 @@ export async function handle({ event, resolve }) {
     if (event.locals.user) {
             response.headers['set-cookie'] = `auth=${event.locals.user.token}; Path=/; HttpOnly; SameSite=Strict`;
 
-
             }
     console.log("response: ", response)
     return response;
 }
 
 export async function getSession(event) {
-    console.log("getSession called");
     return {
         user: event.locals.user
     };

@@ -38,10 +38,15 @@
             gameID: game3.game_id
         }
     ];
+
+    
+    let user = data.post.curUser;
+    console.log("NEW USER: ", user);
+
 </script>
 
 <div class="sticky top-0 z-50">
-    <Navbar/>
+    <Navbar userInfo = {user}/>
 </div>
 
 <div class="flex flex-row justify-center items-center border border-slate-200 shadow-md rounded-lg mx-28 py-9">
