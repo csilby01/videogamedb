@@ -6,6 +6,7 @@
   import { goto } from '$app/navigation';
   
   export let userInfo;
+
   
   let search = "";
   
@@ -45,7 +46,7 @@
   <NavUl>
       <NavLi href="/">Home</NavLi>
       {#if userInfo}
-      <NavLi href="/profile">Profile</NavLi>
+      <NavLi href="/profile/{userInfo.user_id}">Profile</NavLi>
       <NavLi on:click={handleLogout}>Logout</NavLi>
       {:else}
       <NavLi href="/signup">Sign Up</NavLi>

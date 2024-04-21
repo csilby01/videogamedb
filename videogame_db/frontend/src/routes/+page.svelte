@@ -38,16 +38,20 @@
     ];
 
     
-    let user = data.post.curUser;
-    console.log("NEW USER: ", user);
+    let currUser = JSON.parse(data.post.curUser);
+    console.log("NEW USER: ", currUser);
 </script>
 
 <div class="sticky top-0 z-50">
-    <Navbar userInfo = {user}/>
+    <Navbar userInfo = {currUser}/>
 </div>
 
 <div class="flex flex-row justify-center items-center border border-slate-200 shadow-md rounded-lg mx-28 py-9">
    <h1 class="text-5xl self-center whitespace-nowrap font-semibold text-primary-600 dark:text-primary-500">GameGather</h1>
+</div>
+
+<div>
+    <h1>Hello, {currUser.username}</h1>
 </div>
 
 <div class="grid grid-cols-5 min-w-96 gap-2 my-10">

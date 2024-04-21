@@ -76,7 +76,7 @@
 	<div class="grid grid-cols-4 my-8">
 		<div class = "col-span-1 mx-10">
 			<div class ="flex items-center my-2">
-				<span class=" font-semibold">{user[0].firstName} {user[0].lastName}</span>
+				<span class=" font-semibold">{user.firstName} {user.lastName}</span>
 			</div>
 			<div class ="flex items-center my-2">
 				<span class="text-yellow-600 font-semibold">{user.username}</span>
@@ -84,13 +84,6 @@
 			<div class ="flex items-center my-2">
 				Edit Profile
 			</div>
-			<div class ="flex items-center my-2">
-				Followers: 0
-			</div>
-			<div class ="flex items-center my-2">
-				Following: 0
-			</div>
-			<!-- <FollowButton userId = {user.user_id} currentUserId = {currUser.user_id}/> -->
 		</div>
 		<div class="col-span-3">
 			<div>

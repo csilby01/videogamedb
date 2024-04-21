@@ -97,7 +97,7 @@ export async function load({locals}) {
             threeGames: top3Games,
             covers: gameCovers,
             recentReviews: JSON.stringify(reviews),
-            curUser: JSON.stringify(user)
+            curUser: JSON.stringify(user[0])
         }
     };
 };
