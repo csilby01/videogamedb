@@ -50,21 +50,10 @@ export async function load({params, locals}) {
         }
     }
 
-    const userData = locals.user;
-    let currUser;
-    try {
-        currUser = await User.findAll({
-            where: { email: userData.email}
-        });
-    } catch (error){
-        console.log("Failed to get user");
-    }
-
     return {
         post:{
             user: JSON.stringify(user),
-            recentReviews: JSON.stringify(reviews),
-            currUser: JSON.stringify(currUser)
+            recentReviews: JSON.stringify(reviews)
         }
     };
 };

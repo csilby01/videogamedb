@@ -12,7 +12,6 @@
 	export let data;
 	const user = JSON.parse(data.post.user);
 	const reviews = JSON.parse(data.post.recentReviews);
-	const currUser = JSON.parse(data.post.currUser);
 
     const images = [
         {
@@ -77,7 +76,7 @@
 	<div class="grid grid-cols-4 my-8">
 		<div class = "col-span-1 mx-10">
 			<div class ="flex items-center my-2">
-				<span class=" font-semibold">{user.firstName} {user.lastName}</span>
+				<span class=" font-semibold">{user[0].firstName} {user[0].lastName}</span>
 			</div>
 			<div class ="flex items-center my-2">
 				<span class="text-yellow-600 font-semibold">{user.username}</span>
