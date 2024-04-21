@@ -91,7 +91,7 @@
 			<div class ="flex items-center my-2">
 				Following: 0
 			</div>
-			<FollowButton userId = {user.user_id} currentUserId = {currUser.user_id}/>
+			<!-- <FollowButton userId = {user.user_id} currentUserId = {currUser.user_id}/> -->
 		</div>
 		<div class="col-span-3">
 			<div>
