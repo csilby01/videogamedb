@@ -89,8 +89,9 @@ export async function load({locals}) {
             where: { email: userData.email}
         });
     } catch (error){
-        console.log("Failed to get user: ", error);
+        console.log("Failed to get user");
     }
+
     return {
         post: {
             threeGames: top3Games,

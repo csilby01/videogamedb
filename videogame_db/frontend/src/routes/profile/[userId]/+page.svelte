@@ -6,12 +6,13 @@
     import game3 from '$lib/images/game3_placeholder.png';
 	import Review from "$lib/Review.svelte";
 	import BarGraph from "$lib/BarGraph.svelte";
-	import { page } from '$app/stores';
+	import FollowButton from "$lib/FollowButton.svelte";
     
     // const userId = $page.params.userId;
 	export let data;
 	const user = JSON.parse(data.post.user);
 	const reviews = JSON.parse(data.post.recentReviews);
+	const currUser = JSON.parse(data.post.currUser);
 
     const images = [
         {
@@ -79,7 +80,7 @@
 				<span class=" font-semibold">{user.firstName} {user.lastName}</span>
 			</div>
 			<div class ="flex items-center my-2">
-				Username: <span class="text-yellow-600 font-semibold mx-2">{user.username}</span>
+				<span class="text-yellow-600 font-semibold">{user.username}</span>
 			</div>
 			<div class ="flex items-center my-2">
 				Edit Profile
@@ -90,9 +91,7 @@
 			<div class ="flex items-center my-2">
 				Following: 0
 			</div>
-			<div class ="flex items-center my-2">
-				Follow
-			</div>
+			<FollowButton userId = {user.user_id} currentUserId = {currUser.user_id}/>
 		</div>
 		<div class="col-span-3">
 			<div>

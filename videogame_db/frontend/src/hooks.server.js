@@ -17,10 +17,8 @@ export async function handle({ event, resolve }) {
 
     const response = await resolve(event);
     if (event.locals.user) {
-            response.headers['set-cookie'] = `auth=${event.locals.user.token}; Path=/; HttpOnly; SameSite=Strict`;
-
-            }
-    console.log("response: ", response)
+        response.headers['set-cookie'] = `auth=${event.locals.user.token}; Path=/; HttpOnly; SameSite=Strict`;
+    }
     return response;
 }
 

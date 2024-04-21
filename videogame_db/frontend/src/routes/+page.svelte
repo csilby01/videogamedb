@@ -3,8 +3,6 @@
     import Navbar from '../lib/Navbar.svelte';
     import Review from '../lib/Review.svelte';
     import { Carousel } from 'flowbite-svelte';
-    import { fade } from 'svelte/transition';
-    import { quintOut } from 'svelte/easing';
 
     export let data;
 
@@ -42,7 +40,6 @@
     
     let user = data.post.curUser;
     console.log("NEW USER: ", user);
-
 </script>
 
 <div class="sticky top-0 z-50">

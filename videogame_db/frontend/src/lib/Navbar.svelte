@@ -6,7 +6,7 @@
   import { goto } from '$app/navigation';
   
   export let userInfo;
-
+  
   let search = "";
   
   function handleSubmitSearch(event) {

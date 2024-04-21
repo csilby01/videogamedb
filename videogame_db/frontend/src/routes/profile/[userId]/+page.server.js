@@ -4,24 +4,23 @@ import Reviews from '$lib/models/Reviews.js';
 import { getGameCover } from '$lib/db/utils/getCover.js';
 
 /** @type {import('./$types').PageServerLoad} */
-export async function load({params}) {
+export async function load({params, locals}) {
     let user;
     let game;
     let reviews;
     const { userId } = params;
     try {
         user = await User.findByPk(userId);
-        console.log('Found User:', user.username);
     } catch (error){
         console.log("User not found");
     }
 
-    //get recent reviews for game
+    //get recent reviews for user
     try {
         reviews = await Reviews.findAll({
             where: { user_id: userId},
             order: [['updatedAt', 'DESC']],
-            limit: 5
+            limit: 15
         });
     } catch (error){
         console.log("Failed to get reviews: ", error);
@@ -47,14 +46,25 @@ export async function load({params}) {
             let coverURL = await getGameCover(game.game_photo);
             reviews[i]["coverURL"] = coverURL;
         } catch (error){
-            console.log("Failed to get username: ", error);
+            console.log("Failed to get game cover: ", error);
         }
+    }
+
+    const userData = locals.user;
+    let currUser;
+    try {
+        currUser = await User.findAll({
+            where: { email: userData.email}
+        });
+    } catch (error){
+        console.log("Failed to get user");
     }
 
     return {
         post:{
             user: JSON.stringify(user),
-            recentReviews: JSON.stringify(reviews)
+            recentReviews: JSON.stringify(reviews),
+            currUser: JSON.stringify(currUser[0])
         }
     };
 };
