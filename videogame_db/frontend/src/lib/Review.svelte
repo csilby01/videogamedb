@@ -17,7 +17,7 @@
             <div class="flex items-center space-x-4 rtl:space-x-reverse">
                 <a href="/profile"><Avatar src={pfp} /></a>
                 <div class="space-y-1">
-                    <div><P><strong><a href="/profile/{reviewInfo.user_id}" class="hover:underline">{reviewInfo.username}</a></strong> played <strong><a href="/game/{reviewInfo.game_id}" class="hover:underline">{reviewInfo.gamename}</a></strong></P></div>
+                    <div><P><strong><a href="/profile/{reviewInfo.user_id}" class="hover:underline">{reviewInfo.username}</a></strong> played <strong><a href="/game/{reviewInfo.game_id}" class="hover:underline">{reviewInfo.gamename}</a></strong><span class="mx-1">on the</span><span class="font-bold">{reviewInfo.platform}</span></P></div>
                 </div>
             </div>
         </div>

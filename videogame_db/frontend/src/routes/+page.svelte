@@ -17,9 +17,7 @@
     let game3 = JSON.parse(data.post.threeGames[2]);
 
     let coverURLs = data.post.covers;
-
-    let popCover;
-    let newCover;
+    
     const images = [
         {
             alt: 'game 1',
