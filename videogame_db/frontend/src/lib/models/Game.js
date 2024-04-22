@@ -11,6 +11,22 @@ class Game extends Model {
     }
   return await sequelize.query(query, options);
   }
+
+  static async findRecentGames(){
+    const recent = await Game.findAll({
+      order:[['release_date', 'DESC']],
+      limit: 3
+    });
+    return recent;
+  }
+  
+  static async findTopGames(){ // Set the date to one month ago
+    const popular = await Game.findAll({
+      order:[['avg_rating', 'DESC']],
+      limit: 3
+    })
+    return popular;
+  }
 }
 Game.init({
   game_id: {

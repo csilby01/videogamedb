@@ -9,8 +9,8 @@
 {#if reviewInfo}
 <div class="review_layout border border-slate-200 shadow-md rounded-lg my-3 p-3">
     <div class="col_1">
-        <h1 class="row-span-1"><a href="/game/{reviewInfo.game_id}" class="hover:underline">{reviewInfo.gamename}</a></h1>
-        <a href="/game/{reviewInfo.game_id}"><img src={reviewInfo.coverURL} alt="game1" class="row-span-1"/></a>
+        <h1 class="row-span-1"><a href="/game/{reviewInfo.game_id}" class="hover:underline text-lg font-semibold flex justify-center">{reviewInfo.gamename}</a></h1>
+        <a href="/game/{reviewInfo.game_id}"><img src={reviewInfo.coverURL} alt="game1" class="row-span-1 border border-slate-200 shadow-md rounded-lg"/></a>
     </div>
     <div class="col_2 mx-3">
         <div class="row-span-1">
