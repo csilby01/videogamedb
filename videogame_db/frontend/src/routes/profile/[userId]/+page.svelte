@@ -12,6 +12,7 @@
 	export let data;
 	const user = JSON.parse(data.post.user);
 	const reviews = JSON.parse(data.post.recentReviews);
+	const curUser = JSON.parse(data.post.curUser);
 
     const images = [
         {
@@ -82,7 +83,9 @@
 				<span class="text-yellow-600 font-semibold">{user.username}</span>
 			</div>
 			<div class ="flex items-center my-2">
+				{#if user.user_id == curUser.user_id}
 				Edit Profile
+				{/if}
 			</div>
 		</div>
 		<div class="col-span-3">

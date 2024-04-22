@@ -53,7 +53,6 @@
 
     let currUser = JSON.parse(data.post.curUser);
 </script>
-
 <div class="sticky top-0 z-50">
     <Navbar userInfo = {currUser}/>
 </div>
@@ -77,7 +76,7 @@
     <div class="col-span-2 grid grid-rows-1 items-center justify-center pb-1 m-2 border border-slate-200 shadow-md rounded-lg self-start">
         <div class="row-span-1"> 
             <h1 class= " text-2xl text-center font-semibold dark:text-white:">Critic Rating: {game.avg_rating.toFixed(2)}%</h1>
-            <h1 class= " text-2xl text-center font-semibold dark:text-white:">Avg Rating: {avg_rating} Stars</h1>
+            <h1 class= " text-2xl text-center font-semibold dark:text-white:">Avg Rating: {avg_rating} <span class = "text-yellow-400">★</span></h1>
             <BarGraph />
         </div>
         <div class="flex items-center justify-center p-3">

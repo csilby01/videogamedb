@@ -26,7 +26,7 @@
         </div>
     </div>
     <div class="col_3">
-        {reviewInfo.rating} Stars
+        {reviewInfo.rating} <span class = "text-yellow-400 text-xl">★</span>
     </div>
 </div>
 {:else}
