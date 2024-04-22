@@ -36,3 +36,14 @@ npm run build
 You can preview the production build with `npm run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+
+
+## Database
+For the database, There may be an issue for signing up if you mismatch your password and confirm password,
+this is due to permissions with the db making it read only. If you don't run into that issue, please ignore.
+To fix that, within the frontend directory:
+# To Change permissions of the database file
+chmod 664 ./database/videoGameDB.sqlite
+
+# Change permissions of the directory
+chmod 775 ./database

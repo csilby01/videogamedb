@@ -1,8 +1,9 @@
 <!-- Sign Up Page -->
 <script>
   import { Section, Register } from "flowbite-svelte-blocks";
-  import { Button, Label, Input} from "flowbite-svelte";
+  import { Button,Alert, Label, Input} from "flowbite-svelte";
 	import Navbar from "../../lib/Navbar.svelte";
+  import { goto } from '$app/navigation';
 
     let username = "";
     let firstname = "";
@@ -12,19 +13,39 @@
     let email = "";
 
     async function handleSubmit(event){
-        const formData = new FormData(event.target);
-        const response = await fetch('/signup', {
-          method: 'POST',
-          body: formData
-        });
+    const formData = new FormData(event.target);
+    const password = formData.get('password');
+    const password2 = formData.get('password2');
+    const email = formData.get('email');
+
+    if (!email.includes('@')) {
+        alert('Please enter a valid email address containing an @ symbol.');
+        return; 
     }
+
+    if (password !== password2) {
+        alert('Passwords do not match.');
+        return;
+    } 
+        const response = await fetch('/signup', {
+            method: 'POST',
+            body: formData
+        });
+      
+        
+        if (response.ok) {
+          alert('Registration successful!');
+          goto('/login');
+        }
+    }
+
 </script>
 
 <Navbar />
 <Section name="login">
     <Register href="/">
       <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-        <form class="flex flex-col space-y-6" action="/login" on:submit={handleSubmit}>
+        <form class="flex flex-col space-y-6" on:submit={handleSubmit}>
           <h3 class="text-xl font-medium text-gray-900 dark:text-white p-0">Register</h3>
           <div class="grid grid-cols-2">
             <Label class="space-y-2 col-span-1 mr-1">
@@ -50,7 +71,7 @@
           </Label>
           <Label class="space-y-2">
             <span>Confirm password</span>
-            <Input type="password" id="password2" placeholder="•••••" required />
+            <Input type="password" id="password2" name = "password2" placeholder="•••••" bind:value = {password2} required />
           </Label>
           <Button type="submit" class="w-full1">Sign Up</Button>
           <p class="text-sm font-light text-gray-500 dark:text-gray-400">
