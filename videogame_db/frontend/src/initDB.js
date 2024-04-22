@@ -1,5 +1,5 @@
 import { sequelize } from './lib/db/db.js';
-import './lib/db/initModels.js'; // This ensures models are loaded and associated
+import './lib/db/initModels.js'; 
 import Reviews from './lib/models/Reviews.js';
 import Game from './lib/models/Game.js'
 

@@ -20,7 +20,7 @@
     let password = "";
 
     async function handleSubmit(event){
-        event.preventDefault(); // Prevent the default form submission
+        event.preventDefault();
         const formData = new FormData(event.target);
         const response = await fetch('/login', {
             method: 'POST',
@@ -32,9 +32,9 @@
         window.location.href = '/'; 
     } else {
        
-        const result = await response.json(); // Assuming the server sends JSON with an error message
+        const result = await response.json(); 
         console.error('Login failed:', result.error);
-        alert('Login failed: ' + result.error); // Display error message to user
+        alert('Login failed: ' + result.error); // Show error message to user
     }
   }
 
