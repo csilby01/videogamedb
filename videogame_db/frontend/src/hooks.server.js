@@ -5,7 +5,7 @@ console.log("hooks.server.js loaded");
 
 export async function handle({ event, resolve }) {
     if (!event.locals) {
-        event.locals = {};  // Create an empty object if locals is not already initialized
+        event.locals = {};  //creates empty dict so there are no call errors
     }
     const cookies = cookie.parse(event.request.headers.get('cookie') || '');
     try {

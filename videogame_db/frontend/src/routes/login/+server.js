@@ -1,5 +1,4 @@
 import { redirect, json } from '@sveltejs/kit';
-import * as cookie from 'cookie';
 import { loginUser } from '$lib/authService.js';
 
 export async function POST({ request }) {
@@ -17,13 +16,13 @@ export async function POST({ request }) {
             headers: {
                 'Content-Type': 'application/json',
                 'Set-Cookie': `auth=${token}; Path=/; HttpOnly; SameSite=Strict`,
-                // Add `; Secure` if you're using HTTPS in production
+            
             }
         });
     }
 
     if (!request.locals) {
-        request.locals = {};  // Safeguard: initialize if not already initialized
+        request.locals = {}; // initialize if not initialized
     }
     
     request.locals.user = {email, token };

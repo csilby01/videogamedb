@@ -1,4 +1,4 @@
-// src/routes/signup/+server.js
+
 import { registerUser } from '$lib/authService';
 
 export async function POST({ request }) {
