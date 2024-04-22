@@ -80,7 +80,9 @@
             <BarGraph />
         </div>
         <div class="flex items-center justify-center p-3">
+            {#if currUser }
             <GradientButton color="pinkToOrange" href="/game/{gameId}/writeReview">Write a Review!</GradientButton>
+            {/if}
         </div>
     </div>
 </div>

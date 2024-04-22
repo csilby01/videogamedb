@@ -12,6 +12,7 @@
     let currUser = JSON.parse(data.post.curUser);
     if (!currUser){
         goto('/login')
+        window.location.reload(true);
     }
 
     let currUserId = currUser.user_id;

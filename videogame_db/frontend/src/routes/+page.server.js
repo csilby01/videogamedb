@@ -128,7 +128,6 @@ export async function load({locals}) {
             where: { email: userData.email}
         });
     } catch (error){
-        console.log("Failed to get user");
     }
     return {
         post: {
