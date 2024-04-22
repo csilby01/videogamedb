@@ -67,3 +67,18 @@ export function logout() {
         }
     };
 }
+
+export async function updateUserPassword(userId, newPassword) {
+    try {
+        const hashedPassword = await bcrypt.hash(newPassword, SALT_ROUNDS);
+        const result = await User.update(
+            { password: hashedPassword },
+            { where: { id: userId } }
+        );
+
+        return result[0] > 0; 
+    } catch (error) {
+        console.error('Error updating user password:', error);
+        return false;
+    }
+}

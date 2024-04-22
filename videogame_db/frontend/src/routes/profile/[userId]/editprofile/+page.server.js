@@ -1,22 +1,25 @@
 import User from '$lib/models/User.js';
 
 /** @type {import('./$types').PageServerLoad} */
-export async function load({ params }) {
+export async function load({ params, locals }) {
     const { userId } = params;
-    let user;
 
     // get User from DB
     console.log("Fetching user with ID:", userId);
+    const userData = locals.user;
+    let curUser;
+    
     try {
-        user = await User.findByPk(userId);
-        console.log('Found User:', user.username);
+        curUser = await User.findAll({
+            where: { email: userData.email}
+        });
     } catch (error){
-        console.log("User not found");
+        console.log("Failed to get user");
     }
-
+    console.log("THIS IS USER FOR EDIT PROFILE: ", curUser)
     return {
         post: {
-            user: JSON.stringify(user),
+            user: curUser ? JSON.stringify(curUser[0]) : null
         }
     };
 }

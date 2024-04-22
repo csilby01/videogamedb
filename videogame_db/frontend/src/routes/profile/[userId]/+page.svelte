@@ -7,6 +7,7 @@
 	import Review from "$lib/Review.svelte";
 	import BarGraph from "$lib/BarGraph.svelte";
 	import FollowButton from "$lib/FollowButton.svelte";
+	import { GradientButton } from 'flowbite-svelte';
     
     // const userId = $page.params.userId;
 	export let data;
@@ -84,7 +85,7 @@
 			</div>
 			<div class ="flex items-center my-2">
 				{#if user.user_id == curUser.user_id}
-				Edit Profile
+				<GradientButton color="pinkToOrange" href="/profile/${curUser.user_id}/editprofile">Edit Profile</GradientButton>
 				{/if}
 			</div>
 		</div>

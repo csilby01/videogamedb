@@ -4,11 +4,15 @@ import { json } from '@sveltejs/kit';
 export async function POST({ request, params }) {
     const { userId } = params;
     const changes = await request.json();
-    
-    const oldUser = await User.findOne({ user_id: userId });
+    console.log("HELLO MY FRIENDS: ", userId)
+    const oldUser = await User.findOne(
+        { where:{
+                user_id: userId 
+        }});
     try {
-        oldUser.firstName = changes.firstName
-        oldUser.lastName = changes.lastName
+        oldUser.firstName = changes.firstName;
+        oldUser.lastName = changes.lastName;
+        oldUser.password = changes.password;
 
         await oldUser.save()
         return json({success: true, messge: 'Profile edited successfully'});

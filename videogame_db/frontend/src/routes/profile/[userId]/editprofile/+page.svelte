@@ -4,24 +4,14 @@
     import { Button, Label, Input} from "flowbite-svelte";
 	import Navbar from "$lib/Navbar.svelte";
 
+
     export let data;
     const user = JSON.parse(data.post.user);
 
     let firstName = user.firstName;
     let lastName = user.lastName;
     let password = "";
-    let  avatar, fileinput;
     
-    const onFileSelected =(e)=>{
-     let image = e.target.files[0];
-        let reader = new FileReader();
-        reader.readAsDataURL(image);
-        reader.onload = e => {
-                avatar = e.target.result
-            };
-        console.log(fileinput)
-    }
-
     async function handleSubmit(){
         let userFields={firstName, lastName, password};
         
@@ -32,11 +22,12 @@
                 body: JSON.stringify(userFields)
             });
 
-            const result = await response.json();
-            if (result.success){
+            if (response.ok) {
+                window.location.href = '/'; 
                 console.log('Profile edited:', result.data);
             }
             else {
+                const result = await response.json();
                 console.error(`Failed to edit profile: ${result.message}`);
             }
         } catch (error) {
@@ -46,19 +37,7 @@
     
 
 </script>
-<style>
-	#app{
-	display:flex;
-		align-items:center;
-		justify-content:center;
-		flex-flow:column;
-}
-	.avatar{
-		display:flex;
-		height:200px;
-		width:200px;
-	}
-</style>
+
 <Navbar />
 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
     <form class="flex flex-col space-y-6" action="/">
@@ -81,17 +60,6 @@
             <span>Confirm password</span>
             <Input type="password" id="password" placeholder="•••••" required />
         </Label>
-        <div id="app">
-            <h1 class="font-bold text-lg">Upload Image</h1>
-          
-                {#if avatar}
-                <img class="avatar" src="{avatar}" alt="d" />
-                {:else}
-                No Image
-                {/if}
-                <div class="cursor-pointer chan text-lg font-bold border border-slate-200 shadow-md rounded-lg px-2" on:click={()=>{fileinput.click();}}>Choose Image</div>
-                <input style="display:none" type="file" accept=".jpg, .jpeg, .png" on:change={(e)=>onFileSelected(e)} bind:this={fileinput} >
-        </div>
         <Button on:click={handleSubmit} class=" my-10 w-full1">Update Info</Button>
     </form>
 </div>
