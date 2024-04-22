@@ -11,6 +11,16 @@ export async function load({locals}) {
     let gameCovers = [];
     let reviews;
 
+    let recentGames;
+    let recentCovers=[];
+
+    try {
+        let games = await Game.findRecentGames()
+        recentGames = games.map(games => games.get({ plain: true }))
+    }
+    catch (error){
+        console.log("failed to get recent games")
+    }
     // get top 3 games of the month
     try {
         game = await Game.findByPk(9865);
@@ -41,7 +51,35 @@ export async function load({locals}) {
             console.log("Failed to get game cover: ", error);
         }
     }
+    
+    
+    for(let i = 0; i < recentGames.length; i++) {
+        try {
+            let coverURL = await getGameCover(recentGames[i].game_photo);
+            recentCovers.push(coverURL);
+        } catch (error){
+            console.log("Failed to get newCovers: ", error);
+        }
+    }
 
+    let highGames;
+    let highCovers=[];
+    try {
+        let games = await Game.findTopGames()
+        highGames = games.map(games => games.get({ plain: true }))
+    }
+    catch (error){
+        console.log("failed to get high games")
+    }
+
+    for(let i = 0; i < highGames.length; i++) {
+        try {
+            let coverURL = await getGameCover(highGames[i].game_photo);
+            highCovers.push(coverURL);
+        } catch (error){
+            console.log("Failed to get highCovers: ", error);
+        }
+    }
     // get recent reviews
     try {
         reviews = await Reviews.findAll({
@@ -51,7 +89,7 @@ export async function load({locals}) {
     } catch (error){
         console.log("Failed to get reviews: ", error);
     }
-
+    
     // format review data
     reviews = JSON.stringify(reviews);
     reviews = JSON.parse(reviews);
@@ -81,7 +119,7 @@ export async function load({locals}) {
             console.log("Failed to get username: ", error);
         }
     }
-
+    
     const userData = locals.user;
     let user;
     
@@ -92,10 +130,13 @@ export async function load({locals}) {
     } catch (error){
         console.log("Failed to get user");
     }
-
     return {
         post: {
             threeGames: top3Games,
+            recentGames,
+            recentCovers,
+            highGames,
+            highCovers,
             covers: gameCovers,
             recentReviews: JSON.stringify(reviews),
             curUser:  user ? JSON.stringify(user[0]) : null
