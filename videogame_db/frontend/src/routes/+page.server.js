@@ -84,6 +84,7 @@ export async function load({locals}) {
 
     const userData = locals.user;
     let user;
+    
     try {
         user = await User.findAll({
             where: { email: userData.email}
@@ -97,7 +98,7 @@ export async function load({locals}) {
             threeGames: top3Games,
             covers: gameCovers,
             recentReviews: JSON.stringify(reviews),
-            curUser: JSON.stringify(user[0])
+            curUser:  user ? JSON.stringify(user[0]) : null
         }
     };
 };

@@ -18,9 +18,11 @@
   async function handleLogout() {
       const response = await fetch('/logout', { method: 'GET' });
       if (response.ok) {
-          goto('/');
+        window.location.reload(true); // Force a full reload from the server
+      } else {
+        console.error('Failed to logout');
       }
-  }
+    }
 
 </script>
 
@@ -44,13 +46,13 @@
       <NavHamburger />
   </div>
   <NavUl>
-      <NavLi href="/">Home</NavLi>
+      <NavLi class = "cursor-pointer" href="/">Home</NavLi>
       {#if userInfo}
-      <NavLi href="/profile/{userInfo.user_id}">Profile</NavLi>
-      <NavLi on:click={handleLogout}>Logout</NavLi>
+      <NavLi class = "cursor-pointer" href="/profile/{userInfo.user_id}">Profile</NavLi>
+      <NavLi class = "cursor-pointer" on:click={handleLogout}>Logout</NavLi>
       {:else}
-      <NavLi href="/signup">Sign Up</NavLi>
-      <NavLi href="/login">Login</NavLi>
+      <NavLi class = "cursor-pointer" href="/signup">Sign Up</NavLi>
+      <NavLi class = "cursor-pointer" href="/login">Login</NavLi>
       {/if}
   </NavUl>
 </Navbar>

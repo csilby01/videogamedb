@@ -38,7 +38,7 @@
     ];
 
     
-    let currUser = JSON.parse(data.post.curUser);
+    let currUser = data.post.curUser ? JSON.parse(data.post.curUser) : null;
     console.log("NEW USER: ", currUser);
 </script>
 
@@ -51,7 +51,6 @@
 </div>
 
 <div>
-    <h1>Hello, {currUser.username}</h1>
 </div>
 
 <div class="grid grid-cols-5 min-w-96 gap-2 my-10">

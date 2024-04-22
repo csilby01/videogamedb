@@ -114,7 +114,7 @@ export async function load({ params, locals }) {
             screenshotURLs: screenshots,
             recentReviews: JSON.stringify(reviews),
             avgrating: avg_rating,
-            curUser: JSON.stringify(user[0])
+            curUser: user ? JSON.stringify(user[0]) : null
         }
     };
 }
